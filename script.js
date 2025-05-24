@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const featuredItemsSection = document.getElementById('featured-items-section');
 
     // The unified menu is the content within the #unified-menu div
-    const unifiedMenuDiv = document.getElementById('unified-menu');
+    const unifiedMenuDiv = document.getElementById('unified-menu'); // This should be the ID of the div that holds all menu categories now
 
     const MAX_VISIBLE_ITEMS_DEFAULT = 3; 
 
@@ -40,26 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Unified Menu Logic ---
     function initializeUnifiedMenu() {
         if (!unifiedMenuDiv) {
-            console.error("Unified menu container not found!");
+            console.error("Unified menu container (#unified-menu) not found!");
             return;
         }
 
-        // Make sure the unified menu is visible (it has .active-menu by default in HTML)
+        // Ensure the unified menu div is visible (it has .active-menu by default in HTML)
         unifiedMenuDiv.style.display = 'block'; 
         
-        // The content for other branches is just for show if someone inspects HTML,
-        // but we will hide them explicitly here to be safe and ensure only unified menu is targeted by JS.
+        // Remove other branch menus as they are not used anymore in this unified setup
         const tantaMenu = document.getElementById('menu-tanta');
         const mitghamrMenu = document.getElementById('menu-mitghamr');
-        if(tantaMenu) tantaMenu.style.display = 'none';
-        if(mitghamrMenu) mitghamrMenu.style.display = 'none';
-
+        if(tantaMenu) tantaMenu.remove(); // Remove instead of hide
+        if(mitghamrMenu) mitghamrMenu.remove(); // Remove instead of hide
 
         populateFeaturedItemsForUnifiedMenu(unifiedMenuDiv); 
         updateCategoryNavigationForUnifiedMenu(unifiedMenuDiv); 
         initializeShowMoreForCategories(unifiedMenuDiv);
         observeMenuItems(unifiedMenuDiv); 
-        if (featuredItemsGrid && featuredItemsGrid.children.length > 0) {
+        if (featuredItemsGrid && featuredItemsGrid.children.length > 0) { // Check if featured items were actually populated
             observeMenuItems(featuredItemsGrid);
         }
     }
@@ -115,33 +113,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         let count = 0;
-        // Example: Pick first 3 items that have an image placeholder with content (not just "صورة...")
-        // This is a simple heuristic, can be improved.
+        // Example: Pick first 3 items
         for (let i = 0; i < itemsToConsiderForFeatured.length && count < 3; i++) {
-            const imgPlaceholder = itemsToConsiderForFeatured[i].querySelector('.item-image-placeholder span');
-            if (imgPlaceholder && imgPlaceholder.textContent && !imgPlaceholder.textContent.startsWith("صورة ")) { // Basic check
-                const clonedItem = itemsToConsiderForFeatured[i].cloneNode(true);
-                clonedItem.classList.add('featured-item'); 
-                clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
-                clonedItem.style.opacity = 1; 
-                clonedItem.style.transform = 'translateY(0)';
-                const clonedShowMore = clonedItem.querySelector('.show-more-button');
-                if(clonedShowMore) clonedShowMore.remove();
-                featuredItemsGrid.appendChild(clonedItem);
-                count++;
-            } else if (i < 3 && count === 0) { // Fallback: if no "good" images, just take first ones
-                const clonedItem = itemsToConsiderForFeatured[i].cloneNode(true);
-                clonedItem.classList.add('featured-item'); 
-                clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
-                clonedItem.style.opacity = 1; 
-                clonedItem.style.transform = 'translateY(0)';
-                const clonedShowMore = clonedItem.querySelector('.show-more-button');
-                if(clonedShowMore) clonedShowMore.remove();
-                featuredItemsGrid.appendChild(clonedItem);
-                count++;
-            }
+            const clonedItem = itemsToConsiderForFeatured[i].cloneNode(true);
+            clonedItem.classList.add('featured-item'); 
+            clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
+            clonedItem.style.opacity = 1; 
+            clonedItem.style.transform = 'translateY(0)';
+            const clonedShowMore = clonedItem.querySelector('.show-more-button');
+            if(clonedShowMore) clonedShowMore.remove();
+            
+            featuredItemsGrid.appendChild(clonedItem);
+            count++;
         }
-
 
         if (count === 0) {
              featuredItemsSection.style.display = 'none';
@@ -163,8 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index >= MAX_VISIBLE_ITEMS_DEFAULT) {
                 item.style.display = isExpanded ? 'flex' : 'none'; 
                 item.classList.toggle('extra-item', !isExpanded);
-                if (isExpanded && item.classList.contains('animate-on-scroll')) {
-                    item.classList.remove('is-visible'); 
+                if (isExpanded && item.classList.contains('animate-on-scroll') && !item.classList.contains('is-visible')) {
+                    // If revealing, ensure it's re-observed if it wasn't visible yet
                     itemObserver.observe(item);
                 }
             }
@@ -222,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const navLinks = categoryLinksListUl.querySelectorAll('a');
         const sectionsToSpy = [];
-        if (featuredItemsSection && featuredItemsSection.style.display !== 'none' && featuredItemsGrid && featuredItemsGrid.children.length > 0) {
+        if (featuredItemsSection && featuredItemsSection.style.display !== 'none' && featuredItemsGrid.children.length > 0) {
             sectionsToSpy.push(featuredItemsSection);
         }
         sectionsToSpy.push(...unifiedMenuDiv.querySelectorAll('.menu-category:not(.featured-items)'));
@@ -231,29 +215,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let currentSectionInView = "";
         const navContainerHeight = categoryNavContainer.offsetHeight;
+        // Offset should be slightly more than the sticky nav's height to ensure the section title is well past the nav
         const scrollSpyOffset = navContainerHeight + 30; 
 
-        for (let i = sectionsToSpy.length - 1; i >= 0; i--) {
+        for (let i = sectionsToSpy.length - 1; i >= 0; i--) { // Check from bottom up
             const section = sectionsToSpy[i];
             const sectionRect = section.getBoundingClientRect();
+            // If the top of the section is above or at the spy line
             if (sectionRect.top <= scrollSpyOffset) {
                 currentSectionInView = section.getAttribute('id');
                 break; 
             }
         }
         
+        // If scrolled to the very top and no section is "active", or if the first section is partially visible
         if (!currentSectionInView && sectionsToSpy.length > 0) {
-            const firstSectionRect = sectionsToSpy[0].getBoundingClientRect();
-             if (!(firstSectionRect.top > scrollSpyOffset)) {
-                 currentSectionInView = sectionsToSpy[0].getAttribute('id');
+            const firstSection = sectionsToSpy[0];
+            const firstSectionRect = firstSection.getBoundingClientRect();
+            // If the first section is at the top of the viewport or just slightly below the spy line after nav
+            if (firstSectionRect.top < window.innerHeight && firstSectionRect.bottom > scrollSpyOffset) {
+                 currentSectionInView = firstSection.getAttribute('id');
             }
         }
+
 
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${currentSectionInView}`) {
                 link.classList.add('active');
-                if (categoryNavContainer.scrollWidth > categoryNavContainer.clientWidth) {
+                if (categoryNavContainer.scrollWidth > categoryNavContainer.clientWidth && link.offsetParent) { // Check if link is visible
                     link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
             }
@@ -284,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.unobserve(entry.target); 
             }
         });
-    }, { threshold: 0.05 }); 
+    }, { threshold: 0.05 }); // Trigger animation when 5% of item is visible
 
     function observeMenuItems(parentElement) { 
         const itemsToAnimate = parentElement.querySelectorAll('.menu-item.animate-on-scroll');
@@ -298,7 +288,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Setup ---
     if (unifiedMenuDiv) {
-        initializeUnifiedMenu(); // This function will now handle all setup for the single menu
+        initializeUnifiedMenu(); 
+    } else {
+        console.error("Main menu container '#unified-menu' not found. Site may not function correctly.");
     }
     
     // Event delegation for "Add to Cart"
@@ -319,5 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentYearSpan.textContent = new Date().getFullYear();
     }
     
-    handleScrollSpy(); // Initial call for scroll spy
+    // Call scroll spy once after everything is set up to highlight the correct initial section
+    setTimeout(handleScrollSpy, 100); // Timeout to ensure DOM is fully painted
 });
