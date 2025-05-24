@@ -78,6 +78,7 @@ body.light-mode #category-nav-container a.active { background-color: var(--accen
 body.light-mode .featured-items { background-color: var(--bg-content-light); border-color: var(--border-light); }
 .featured-items h2 { font-size: clamp(1.5rem, 3.5vw, 1.8rem); color: var(--accent-secondary-dark); text-align: center; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 2px solid var(--accent-primary-dark); display: inline-block; }
 body.light-mode .featured-items h2 { color: var(--accent-secondary-light); border-bottom-color: var(--accent-primary-light); }
+/* .featured-items .category-description { font-size: 0.95rem; text-align: center; margin-bottom: 20px; } */
 .featured-grid .menu-item { box-shadow: 0 4px 10px var(--shadow-base-dark); }
 body.light-mode .featured-grid .menu-item { box-shadow: 0 4px 10px var(--shadow-base-light); }
 .featured-item .item-details h3 { color: var(--accent-secondary-dark) !important; }
