@@ -3,409 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة طعام مطعم الإسراء</title> <link rel="stylesheet" href="style.css">
+    <title>قائمة طعام مطعم الإسراء المُميز</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header style="text-align: center; padding: 20px 0; background-color: #C0392B; color: white;">
+    <div id="preloader">
+        <div class="loader-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <p class="loading-text">جاري تحميل قائمة الطعام الشهية...</p>
+    </div>
+
+    <header class="main-header">
         <h1>قائمة طعام مطعم الإسراء</h1>
-        <p style="font-size: 1.1em;">أشهى المأكولات تجدونها لدينا!</p>
+        <p class="header-subtitle">أشهى المأكولات والمشروبات تجدونها لدينا!</p>
     </header>
 
     <main>
         <div id="full-menu-content">
-
-          <div class="menu-category">
-            <h2>أطباق الإسراء الذهبية - Golden Israa Dishes</h2>
-            <div class="menu-item">
-              <h3>مكس دجاج - Chicken Mix</h3>
-              <p class="price">صغير (S): 120 جنيه</p>
-              <p class="price">وسط (M): 125 جنيه</p>
-              <p class="price">كبير (L): 155 جنيه</p>
-              <p class="description">(قطع دجاج كرسبي مع أرز، بطاطس، مخلل وعيش)</p>
-            </div>
-            <div class="menu-item">
-              <h3>مكس لحوم - Meat Mix</h3>
-              <p class="price">صغير (S): 120 جنيه</p>
-              <p class="price">وسط (M): 125 جنيه</p>
-              <p class="price">كبير (L): 155 جنيه</p>
-              <p class="description">(قطع لحم مع أرز، بطاطس، مخلل وعيش)</p>
-            </div>
-            <div class="menu-item">
-              <h3>سوبريم دجاج - Supreme Chicken</h3>
-              <p class="price">صغير (S): 120 جنيه</p>
-              <p class="price">وسط (M): 125 جنيه</p>
-              <p class="price">كبير (L): 155 جنيه</p>
-              <p class="description">(قطع دجاج سوبريم مع أرز، بطاطس، مخلل وعيش)</p>
-            </div>
-          </div>
-        
-          <div class="menu-category">
-            <h2>البيتزا - Pizza</h2>
-        
-            <div class="menu-item">
-              <h3>بيتزا مارجريتا - Margherita</h3>
-              <p class="description">عجينة البيتزا، صوص طماطم، جبنة موتزاريلا وزعتر</p>
-              <p class="price">وسط (M): 105 جنيه</p>
-              <p class="price">كبير (L): 140 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا فور تشيز - Four Cheese</h3>
-              <p class="description">مزيج من أربع أنواع جبن فاخرة</p>
-              <p class="price">وسط (M): 115 جنيه</p>
-              <p class="price">كبير (L): 150 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا خضروات - Vegetables</h3>
-              <p class="description">فلفل، طماطم، زيتون، بصل، مشروم</p>
-              <p class="price">وسط (M): 110 جنيه</p>
-              <p class="price">كبير (L): 145 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا مشروم - Mushroom</h3>
-              <p class="description">شرائح مشروم طازجة مع جبنة موتزاريلا</p>
-              <p class="price">وسط (M): 125 جنيه</p>
-              <p class="price">كبير (L): 165 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا هوت دوج - Hot Dog</h3>
-              <p class="description">قطع هوت دوج مع فلفل وزيتون</p>
-              <p class="price">وسط (M): 125 جنيه</p>
-              <p class="price">كبير (L): 165 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا سجق - Sausage (Sogo2)</h3>
-              <p class="description">سجق شرقي مبهر مع خضروات</p>
-              <p class="price">وسط (M): 125 جنيه</p>
-              <p class="price">كبير (L): 165 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا بسطرمة - Pastrami</h3>
-              <p class="description">شرائح بسطرمة لذيذة</p>
-              <p class="price">وسط (M): 125 جنيه</p>
-              <p class="price">كبير (L): 165 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا تشيكن رانش - Chicken Ranch</h3>
-              <p class="description">قطع دجاج، صوص رانش، فلفل، زيتون</p>
-              <p class="price">وسط (M): 135 جنيه</p>
-              <p class="price">كبير (L): 180 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا تشيكن باربيكيو - Chicken BBQ</h3>
-              <p class="description">قطع دجاج، صوص باربيكيو، بصل</p>
-              <p class="price">وسط (M): 135 جنيه</p>
-              <p class="price">كبير (L): 180 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا بيبروني - Pepperoni</h3>
-              <p class="description">شرائح بيبروني مع جبنة موتزاريلا</p>
-              <p class="price">وسط (M): 130 جنيه</p>
-              <p class="price">كبير (L): 175 جنيه</p>
-            </div>
-        
-            <h3>بيتزا بحريات - Seafood Pizza</h3>
-            <div class="menu-item">
-              <h3>بيتزا تونة - Tuna Pizza</h3>
-              <p class="description">قطع تونة، فلفل، زيتون، بصل</p>
-              <p class="price">وسط (M): 130 جنيه</p>
-              <p class="price">كبير (L): 190 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا جمبري - Shrimp Pizza</h3>
-              <p class="description">جمبري طازج مع صوص خاص</p>
-              <p class="price">صغير (S): 155 جنيه</p> <p class="price">وسط (M): 200 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيتزا سي فود - Seafood Pizza</h3>
-              <p class="description">مزيج من فواكه البحر الطازجة</p>
-              <p class="price">وسط (M): 165 جنيه</p>
-              <p class="price">كبير (L): 210 جنيه</p>
-            </div>
-          </div>
-        
-          <div class="menu-category">
-            <h2>الكريبات - Crepes</h2>
-            <div class="menu-item">
-              <h3>كريب بطاطس - Potato Crepe</h3>
-              <p class="price">70 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب مكس تشيز - Mixed Cheese Crepe</h3>
-              <p class="price">رول: 80 جنيه</p>
-              <p class="price">مثلث: 90 جنيه</p>
-              <p class="price">اكسترا: 110 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب كفتة - Kofta Crepe</h3>
-              <p class="price">95 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب سجق - Sausage Crepe</h3>
-              <p class="price">95 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب زنجر (حار/بارد) - Zinger Crepe (Spicy/Mild)</h3>
-              <p class="price">110 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب كرانشي تشيلي حار - Crispy Chili Chicken Crepe (Spicy)</h3>
-              <p class="description">(استربس حار، هوت دوج، جبنة شيدر، صوص تشيلي حار)</p>
-              <p class="price">110 جنيه</p>
-            </div>
-             <div class="menu-item">
-              <h3>كريب زنجر تشيلي حار - Zinger Chili Crepe (Spicy)</h3>
-              <p class="description">(زنجر حار، صوص مدخن، جبنة موتزاريلا، صوص تشيلي حار)</p>
-              <p class="price">110 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب سويت تشيلي - Sweet Chili Crepe</h3>
-              <p class="description">(استربس، شيش، جبنة موتزاريلا، صوص سويت شيلي)</p>
-              <p class="price">110 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب مكس تشيكن رانش - Mixed Chicken Ranch Crepe</h3>
-              <p class="description">(استربس، شيش، كفتة فراخ، جبنة موتزاريلا، صوص رانش)</p>
-              <p class="price">110 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب الإسراء - El-Israa Crepe</h3>
-              <p class="description">(استربس، شاورما فراخ، برجر، قطعة هوت دوج، صوص جبنة شيدر)</p>
-              <p class="price">120 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب بانيه - Pane Crepe</h3>
-              <p class="price">100 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كريب شيش طاووق - Shish Taouk Crepe</h3>
-              <p class="price">105 جنيه</p>
-            </div>
-          </div>
-        
-          <div class="menu-category">
-            <h2>الشاورما - Shawarma</h2>
-            <div class="menu-item">
-              <h3>ساندوتش سوري دجاج - Syrian Chicken Sandwich</h3>
-              <p class="price">80 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>ساندوتش سوري بطاطس - Syrian Potato Sandwich</h3>
-              <p class="price">45 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>ساندوتش سوري كفتة - Syrian Kofta Sandwich</h3>
-              <p class="price">85 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>ساندوتش استربس (حار/بارد) - Strips Sandwich (Spicy/Mild)</h3>
-              <p class="price">95 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>فتة شاورما دجاج - Chicken Shawarma Fatteh</h3>
-              <p class="price">105 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>وجبة عربي دجاج - Arabic Chicken Meal</h3>
-              <p class="price">160 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>ربع كيلو شاورما دجاج - 1/4 Kg Chicken Shawarma</h3>
-              <p class="price">105 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>وجبة رز وشاورما - Rice & Shawarma Meal</h3>
-              <p class="price">115 جنيه</p>
-            </div>
-             <div class="menu-item">
-              <h3>وجبة فرى ميلز - Free Mills Meal</h3>
-              <p class="price">130 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>وجبة ريزو بصوص تشيلي حار - Rizo with Hot Chili Sauce Meal</h3>
-              <p class="price">110 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>طبق رز بسمتي - Basmati Rice Plate</h3>
-              <p class="price">40 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>علبة تومية - Garlic Dip (Thomeya)</h3>
-              <p class="price">20 جنيه</p>
-            </div>
-          </div>
-        
-          <div class="menu-category">
-            <h2>وجبات خاصة - Special Meals</h2>
-            <div class="menu-item">
-              <h3>تشيكن فاهيتا - Chicken Fajita Meal</h3>
-              <p class="price">وسط (M): 135 جنيه</p>
-              <p class="price">كبير (L): 180 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كرانشي (حار/بارد) - Crunchy Meal (Spicy/Mild)</h3>
-              <p class="price">وسط (M): 135 جنيه</p>
-              <p class="price">كبير (L): 180 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كرانشي تشيلي حار - Crunchy Chili Meal (Spicy)</h3>
-              <p class="price">وسط (M): 145 جنيه</p>
-              <p class="price">كبير (L): 190 جنيه</p>
-            </div>
-             <div class="menu-item">
-              <h3>دوتشي - Dutchy Meal</h3>
-              <p class="price">وسط (M): 135 جنيه</p>
-              <p class="price">كبير (L): 180 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>تشيكن باربيكيو - Chicken BBQ Meal</h3>
-              <p class="price">وسط (M): 145 جنيه</p>
-              <p class="price">كبير (L): 190 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>تكساس برجر - Texas Burger Meal</h3>
-              <p class="price">وسط (M): 145 جنيه</p>
-              <p class="price">كبير (L): 190 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>دبل استربس - Double Strips Meal</h3>
-              <p class="price">170 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>دبل برجر - Double Burger Meal</h3>
-              <p class="price">170 جنيه</p>
-            </div>
-          </div>
-        
-          <div class="menu-category">
-            <h2>المكرونات - Pasta</h2>
-            <div class="menu-item">
-              <h3>مكرونة خضار بالمشروم - Vegetables & Mushroom Pasta</h3>
-              <p class="price">75 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>مكرونة نجرسكو - Negresco Pasta</h3>
-              <p class="description">مكرونة بالدجاج والمشروم والكريمة والجبنة</p>
-              <p class="price">105 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>مكرونة الفريدو - Alfredo Pasta</h3>
-              <p class="description">مكرونة بصوص الفريدو الكريمي والدجاج</p>
-              <p class="price">115 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>مكرونة فرن باللحم المفروم - Baked Pasta with Minced Meat</h3>
-              <p class="price">100 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>مكرونة جمبري - Shrimp Pasta</h3>
-              <p class="price">135 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>مكرونة سي فود - Seafood Pasta</h3>
-              <p class="price">145 جنيه</p>
-            </div>
-          </div>
-        
-          <div class="menu-category">
-            <h2>الإضافات - Additions</h2>
-            <div class="menu-item">
-              <h3>إضافة موتزاريلا - Mozzarella</h3>
-              <p class="price">25 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>إضافة جبنة رومي - Roumy Cheese</h3>
-              <p class="price">25 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>إضافة جبنة شيدر - Cheddar Cheese</h3>
-              <p class="price">35 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>إضافة هالبينو - Jalapeno</h3>
-              <p class="price">20 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>إضافة مشروم - Mushroom</h3>
-              <p class="price">30 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>إضافة صوص - Sauce</h3>
-              <p class="price">20 جنيه</p>
-            </div>
-          </div>
-        
-          <div class="menu-category">
-            <h2>المقبلات - Appetizers</h2>
-            <div class="menu-item">
-              <h3>بطاطس فارم فريتس - French Fries</h3>
-              <p class="price">وسط: 30 جنيه</p>
-              <p class="price">كبير: 40 جنيه</p>
-            </div>
-             <div class="menu-item">
-              <h3>بطاطس بالجبنة - Fries with Cheese</h3>
-              <p class="price">وسط: 40 جنيه</p>
-              <p class="price">كبير: 50 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>حلقات بصل - Onion Rings</h3>
-              <p class="price">35 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>خبز بالثوم - Garlic Bread</h3>
-              <p class="price">30 جنيه</p>
-            </div>
-             <div class="menu-item">
-              <h3>خبز بالثوم والجبنة - Garlic Bread with Cheese</h3>
-              <p class="price">40 جنيه</p>
-            </div>
-          </div>
-        
-           <div class="menu-category">
-            <h2>المشروبات - Drinks</h2>
-            <div class="menu-item">
-              <h3>مياه معدنية - Mineral Water</h3>
-              <p class="price">10 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>كوكاكولا - Coca-Cola</h3>
-              <p class="price">15 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>بيبسي - Pepsi</h3>
-              <p class="price">15 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>سفن اب - 7up</h3>
-              <p class="price">15 جنيه</p>
-            </div>
-             <div class="menu-item">
-              <h3>عصير برتقال طازج - Fresh Orange Juice</h3>
-              <p class="price">25 جنيه</p>
-            </div>
-            <div class="menu-item">
-              <h3>عصير مانجو طازج - Fresh Mango Juice</h3>
-              <p class="price">30 جنيه</p>
-            </div>
-          </div>
-        
+            <div class="menu-category animate-on-scroll">
+                <h2>أطباق الإسراء الذهبية - Golden Israa Dishes</h2>
+                <div class="menu-item">
+                  <h3>مكس دجاج - Chicken Mix</h3>
+                  <p class="price">صغير (S): 120 جنيه</p>
+                  <p class="price">وسط (M): 125 جنيه</p>
+                  <p class="price">كبير (L): 155 جنيه</p>
+                  <p class="description">(قطع دجاج كرسبي مع أرز، بطاطس، مخلل وعيش)</p>
+                </div>
+                <div class="menu-item">
+                  <h3>مكس لحوم - Meat Mix</h3>
+                  <p class="price">صغير (S): 120 جنيه</p>
+                  <p class="price">وسط (M): 125 جنيه</p>
+                  <p class="price">كبير (L): 155 جنيه</p>
+                  <p class="description">(قطع لحم مع أرز، بطاطس، مخلل وعيش)</p>
+                </div>
+                <div class="menu-item">
+                  <h3>سوبريم دجاج - Supreme Chicken</h3>
+                  <p class="price">صغير (S): 120 جنيه</p>
+                  <p class="price">وسط (M): 125 جنيه</p>
+                  <p class="price">كبير (L): 155 جنيه</p>
+                  <p class="description">(قطع دجاج سوبريم مع أرز، بطاطس، مخلل وعيش)</p>
+                </div>
+              </div>
+            
+              <div class="menu-category animate-on-scroll">
+                <h2>البيتزا - Pizza</h2>
+            
+                <div class="menu-item">
+                  <h3>بيتزا مارجريتا - Margherita</h3>
+                  <p class="description">عجينة البيتزا، صوص طماطم، جبنة موتزاريلا وزعتر</p>
+                  <p class="price">وسط (M): 105 جنيه</p>
+                  <p class="price">كبير (L): 140 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا فور تشيز - Four Cheese</h3>
+                  <p class="description">مزيج من أربع أنواع جبن فاخرة</p>
+                  <p class="price">وسط (M): 115 جنيه</p>
+                  <p class="price">كبير (L): 150 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا خضروات - Vegetables</h3>
+                  <p class="description">فلفل، طماطم، زيتون، بصل، مشروم</p>
+                  <p class="price">وسط (M): 110 جنيه</p>
+                  <p class="price">كبير (L): 145 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا مشروم - Mushroom</h3>
+                  <p class="description">شرائح مشروم طازجة مع جبنة موتزاريلا</p>
+                  <p class="price">وسط (M): 125 جنيه</p>
+                  <p class="price">كبير (L): 165 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا هوت دوج - Hot Dog</h3>
+                  <p class="description">قطع هوت دوج مع فلفل وزيتون</p>
+                  <p class="price">وسط (M): 125 جنيه</p>
+                  <p class="price">كبير (L): 165 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا سجق - Sausage (Sogo2)</h3>
+                  <p class="description">سجق شرقي مبهر مع خضروات</p>
+                  <p class="price">وسط (M): 125 جنيه</p>
+                  <p class="price">كبير (L): 165 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا بسطرمة - Pastrami</h3>
+                  <p class="description">شرائح بسطرمة لذيذة</p>
+                  <p class="price">وسط (M): 125 جنيه</p>
+                  <p class="price">كبير (L): 165 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا تشيكن رانش - Chicken Ranch</h3>
+                  <p class="description">قطع دجاج، صوص رانش، فلفل، زيتون</p>
+                  <p class="price">وسط (M): 135 جنيه</p>
+                  <p class="price">كبير (L): 180 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا تشيكن باربيكيو - Chicken BBQ</h3>
+                  <p class="description">قطع دجاج، صوص باربيكيو، بصل</p>
+                  <p class="price">وسط (M): 135 جنيه</p>
+                  <p class="price">كبير (L): 180 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا بيبروني - Pepperoni</h3>
+                  <p class="description">شرائح بيبروني مع جبنة موتزاريلا</p>
+                  <p class="price">وسط (M): 130 جنيه</p>
+                  <p class="price">كبير (L): 175 جنيه</p>
+                </div>
+            
+                <h3 class="subcategory-title">بيتزا بحريات - Seafood Pizza</h3>
+                <div class="menu-item">
+                  <h3>بيتزا تونة - Tuna Pizza</h3>
+                  <p class="description">قطع تونة، فلفل، زيتون، بصل</p>
+                  <p class="price">وسط (M): 130 جنيه</p>
+                  <p class="price">كبير (L): 190 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا جمبري - Shrimp Pizza</h3>
+                  <p class="description">جمبري طازج مع صوص خاص</p>
+                  <p class="price">صغير (S): 155 جنيه</p> <p class="price">وسط (M): 200 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيتزا سي فود - Seafood Pizza</h3>
+                  <p class="description">مزيج من فواكه البحر الطازجة</p>
+                  <p class="price">وسط (M): 165 جنيه</p>
+                  <p class="price">كبير (L): 210 جنيه</p>
+                </div>
+              </div>
+            
+              <div class="menu-category animate-on-scroll">
+                <h2>الكريبات - Crepes</h2>
+                <div class="menu-item">
+                  <h3>كريب بطاطس - Potato Crepe</h3>
+                  <p class="price">70 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب مكس تشيز - Mixed Cheese Crepe</h3>
+                  <p class="price">رول: 80 جنيه</p>
+                  <p class="price">مثلث: 90 جنيه</p>
+                  <p class="price">اكسترا: 110 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب كفتة - Kofta Crepe</h3>
+                  <p class="price">95 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب سجق - Sausage Crepe</h3>
+                  <p class="price">95 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب زنجر (حار/بارد) - Zinger Crepe (Spicy/Mild)</h3>
+                  <p class="price">110 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب كرانشي تشيلي حار - Crispy Chili Chicken Crepe (Spicy)</h3>
+                  <p class="description">(استربس حار، هوت دوج، جبنة شيدر، صوص تشيلي حار)</p>
+                  <p class="price">110 جنيه</p>
+                </div>
+                 <div class="menu-item">
+                  <h3>كريب زنجر تشيلي حار - Zinger Chili Crepe (Spicy)</h3>
+                  <p class="description">(زنجر حار، صوص مدخن، جبنة موتزاريلا، صوص تشيلي حار)</p>
+                  <p class="price">110 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب سويت تشيلي - Sweet Chili Crepe</h3>
+                  <p class="description">(استربس، شيش، جبنة موتزاريلا، صوص سويت شيلي)</p>
+                  <p class="price">110 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب مكس تشيكن رانش - Mixed Chicken Ranch Crepe</h3>
+                  <p class="description">(استربس، شيش، كفتة فراخ، جبنة موتزاريلا، صوص رانش)</p>
+                  <p class="price">110 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب الإسراء - El-Israa Crepe</h3>
+                  <p class="description">(استربس، شاورما فراخ، برجر، قطعة هوت دوج، صوص جبنة شيدر)</p>
+                  <p class="price">120 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب بانيه - Pane Crepe</h3>
+                  <p class="price">100 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كريب شيش طاووق - Shish Taouk Crepe</h3>
+                  <p class="price">105 جنيه</p>
+                </div>
+              </div>
+            
+              <div class="menu-category animate-on-scroll">
+                <h2>الشاورما - Shawarma</h2>
+                <div class="menu-item">
+                  <h3>ساندوتش سوري دجاج - Syrian Chicken Sandwich</h3>
+                  <p class="price">80 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>ساندوتش سوري بطاطس - Syrian Potato Sandwich</h3>
+                  <p class="price">45 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>ساندوتش سوري كفتة - Syrian Kofta Sandwich</h3>
+                  <p class="price">85 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>ساندوتش استربس (حار/بارد) - Strips Sandwich (Spicy/Mild)</h3>
+                  <p class="price">95 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>فتة شاورما دجاج - Chicken Shawarma Fatteh</h3>
+                  <p class="price">105 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>وجبة عربي دجاج - Arabic Chicken Meal</h3>
+                  <p class="price">160 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>ربع كيلو شاورما دجاج - 1/4 Kg Chicken Shawarma</h3>
+                  <p class="price">105 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>وجبة رز وشاورما - Rice & Shawarma Meal</h3>
+                  <p class="price">115 جنيه</p>
+                </div>
+                 <div class="menu-item">
+                  <h3>وجبة فرى ميلز - Free Mills Meal</h3>
+                  <p class="price">130 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>وجبة ريزو بصوص تشيلي حار - Rizo with Hot Chili Sauce Meal</h3>
+                  <p class="price">110 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>طبق رز بسمتي - Basmati Rice Plate</h3>
+                  <p class="price">40 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>علبة تومية - Garlic Dip (Thomeya)</h3>
+                  <p class="price">20 جنيه</p>
+                </div>
+              </div>
+            
+              <div class="menu-category animate-on-scroll">
+                <h2>وجبات خاصة - Special Meals</h2>
+                <div class="menu-item">
+                  <h3>تشيكن فاهيتا - Chicken Fajita Meal</h3>
+                  <p class="price">وسط (M): 135 جنيه</p>
+                  <p class="price">كبير (L): 180 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كرانشي (حار/بارد) - Crunchy Meal (Spicy/Mild)</h3>
+                  <p class="price">وسط (M): 135 جنيه</p>
+                  <p class="price">كبير (L): 180 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كرانشي تشيلي حار - Crunchy Chili Meal (Spicy)</h3>
+                  <p class="price">وسط (M): 145 جنيه</p>
+                  <p class="price">كبير (L): 190 جنيه</p>
+                </div>
+                 <div class="menu-item">
+                  <h3>دوتشي - Dutchy Meal</h3>
+                  <p class="price">وسط (M): 135 جنيه</p>
+                  <p class="price">كبير (L): 180 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>تشيكن باربيكيو - Chicken BBQ Meal</h3>
+                  <p class="price">وسط (M): 145 جنيه</p>
+                  <p class="price">كبير (L): 190 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>تكساس برجر - Texas Burger Meal</h3>
+                  <p class="price">وسط (M): 145 جنيه</p>
+                  <p class="price">كبير (L): 190 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>دبل استربس - Double Strips Meal</h3>
+                  <p class="price">170 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>دبل برجر - Double Burger Meal</h3>
+                  <p class="price">170 جنيه</p>
+                </div>
+              </div>
+            
+              <div class="menu-category animate-on-scroll">
+                <h2>المكرونات - Pasta</h2>
+                <div class="menu-item">
+                  <h3>مكرونة خضار بالمشروم - Vegetables & Mushroom Pasta</h3>
+                  <p class="price">75 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>مكرونة نجرسكو - Negresco Pasta</h3>
+                  <p class="description">مكرونة بالدجاج والمشروم والكريمة والجبنة</p>
+                  <p class="price">105 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>مكرونة الفريدو - Alfredo Pasta</h3>
+                  <p class="description">مكرونة بصوص الفريدو الكريمي والدجاج</p>
+                  <p class="price">115 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>مكرونة فرن باللحم المفروم - Baked Pasta with Minced Meat</h3>
+                  <p class="price">100 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>مكرونة جمبري - Shrimp Pasta</h3>
+                  <p class="price">135 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>مكرونة سي فود - Seafood Pasta</h3>
+                  <p class="price">145 جنيه</p>
+                </div>
+              </div>
+            
+              <div class="menu-category animate-on-scroll">
+                <h2>الإضافات - Additions</h2>
+                <div class="menu-item">
+                  <h3>إضافة موتزاريلا - Mozzarella</h3>
+                  <p class="price">25 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>إضافة جبنة رومي - Roumy Cheese</h3>
+                  <p class="price">25 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>إضافة جبنة شيدر - Cheddar Cheese</h3>
+                  <p class="price">35 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>إضافة هالبينو - Jalapeno</h3>
+                  <p class="price">20 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>إضافة مشروم - Mushroom</h3>
+                  <p class="price">30 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>إضافة صوص - Sauce</h3>
+                  <p class="price">20 جنيه</p>
+                </div>
+              </div>
+            
+              <div class="menu-category animate-on-scroll">
+                <h2>المقبلات - Appetizers</h2>
+                <div class="menu-item">
+                  <h3>بطاطس فارم فريتس - French Fries</h3>
+                  <p class="price">وسط: 30 جنيه</p>
+                  <p class="price">كبير: 40 جنيه</p>
+                </div>
+                 <div class="menu-item">
+                  <h3>بطاطس بالجبنة - Fries with Cheese</h3>
+                  <p class="price">وسط: 40 جنيه</p>
+                  <p class="price">كبير: 50 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>حلقات بصل - Onion Rings</h3>
+                  <p class="price">35 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>خبز بالثوم - Garlic Bread</h3>
+                  <p class="price">30 جنيه</p>
+                </div>
+                 <div class="menu-item">
+                  <h3>خبز بالثوم والجبنة - Garlic Bread with Cheese</h3>
+                  <p class="price">40 جنيه</p>
+                </div>
+              </div>
+            
+               <div class="menu-category animate-on-scroll">
+                <h2>المشروبات - Drinks</h2>
+                <div class="menu-item">
+                  <h3>مياه معدنية - Mineral Water</h3>
+                  <p class="price">10 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>كوكاكولا - Coca-Cola</h3>
+                  <p class="price">15 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>بيبسي - Pepsi</h3>
+                  <p class="price">15 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>سفن اب - 7up</h3>
+                  <p class="price">15 جنيه</p>
+                </div>
+                 <div class="menu-item">
+                  <h3>عصير برتقال طازج - Fresh Orange Juice</h3>
+                  <p class="price">25 جنيه</p>
+                </div>
+                <div class="menu-item">
+                  <h3>عصير مانجو طازج - Fresh Mango Juice</h3>
+                  <p class="price">30 جنيه</p>
+                </div>
+              </div>
+            
         </div>
-        </main>
+    </main>
 
-    <footer style="text-align: center; padding: 20px 0; background-color: #34495E; color: #ecf0f1; margin-top: 30px;">
-        <p>للتوصيل وطلباتكم: <strong>15410</strong></p>
-        <p>تابعونا على وسائل التواصل الاجتماعي!</p> <p>&copy; <span id="currentYear"></span> مطعم الإسراء. جميع الحقوق محفوظة.</p>
+    <footer class="main-footer">
+        <p>للتوصيل وطلباتكم، اتصل بنا على: <strong class="phone-number">15410</strong></p>
+        <div class="social-media-links">
+            </div>
+        <p>&copy; <span id="currentYear"></span> مطعم الإسراء. جميع الحقوق محفوظة لمطورينا المبدعين.</p>
     </footer>
 
+    <div id="order-preview-bar" class="order-preview-hidden">
+        <div class="order-preview-header" id="order-preview-toggle-header">
+            <h3><span class="cart-icon">🛒</span> طلباتي (<span id="cart-item-count">0</span>)</h3>
+            <button id="toggle-order-preview-button" aria-label="إخفاء/إظهار الطلبات" class="toggle-arrow">▼</button>
+        </div>
+        <div id="cart-items-container">
+            <p class="empty-cart-message">سلة طلباتك فارغة حالياً. أضف بعض الأصناف الشهية!</p>
+        </div>
+        <div class="order-preview-footer">
+            <p><strong>الإجمالي: <span id="cart-total">0.00</span> جنيه</strong></p>
+            <button id="clear-cart-button" class="btn btn-danger">مسح كل الطلبات</button>
+            <button id="checkout-button" class="btn btn-success">إتمام الطلب (تجريبي)</button>
+        </div>
+    </div>
+
+    <button id="back-to-top-btn" title="العودة إلى الأعلى">↑</button>
+
     <script src="script.js"></script>
-    <script>
-        // كود بسيط لتحديث سنة الحقوق تلقائياً
-        if (document.getElementById('currentYear')) {
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-        }
-    </script>
 </body>
 </html>
