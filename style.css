@@ -56,9 +56,8 @@ body.dark-mode .icon-dark { display: inline; } body.dark-mode .icon-light { disp
 .tagline { font-size: clamp(0.8rem, 2vw, 0.9rem); text-align: center; color: var(--text-secondary-dark); margin-top: 8px; padding: 0; }
 body.light-mode .tagline { color: var(--text-secondary-light); }
 
-/* Main Content & Controls Wrapper (No longer exists, integrated into category-nav stickiness) */
+/* Main Content & Category Navigation */
 .site-main { padding-top: 15px; }
-/* Category Navigation */
 #category-nav-container { background-color: var(--bg-accent-dark); padding: 8px 0; overflow-x: auto; white-space: nowrap; margin-bottom: 25px; border-radius: var(--border-radius); position: sticky; top: 0; z-index: 990; box-shadow: 0 2px 4px var(--shadow-base-dark); -webkit-overflow-scrolling: touch; }
 body.light-mode #category-nav-container { background-color: var(--bg-accent-light); box-shadow: 0 2px 4px var(--shadow-base-light); }
 #category-nav-container ul { list-style: none; padding: 0 var(--container-padding); margin: 0; display: flex; gap: 8px; }
@@ -81,30 +80,29 @@ body.light-mode #category-nav-container a.active { background-color: var(--accen
 body.light-mode .featured-items { background-color: var(--bg-content-light); border-color: var(--border-light); }
 .featured-items h2 { font-size: clamp(1.5rem, 3.5vw, 1.8rem); color: var(--accent-secondary-dark); text-align: center; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 2px solid var(--accent-primary-dark); display: inline-block; }
 body.light-mode .featured-items h2 { color: var(--accent-secondary-light); border-bottom-color: var(--accent-primary-light); }
-.featured-items .category-description { font-size: 0.95rem; text-align: center; margin-bottom: 20px; } /* Kept description for featured */
-.featured-grid .menu-item { box-shadow: 0 4px 10px var(--shadow-base-dark); /* Emphasize featured items more */ }
+.featured-items .category-description { font-size: 0.95rem; text-align: center; margin-bottom: 20px; }
+.featured-grid .menu-item { box-shadow: 0 4px 10px var(--shadow-base-dark); }
 body.light-mode .featured-grid .menu-item { box-shadow: 0 4px 10px var(--shadow-base-light); }
 .featured-item .item-details h3 { color: var(--accent-secondary-dark) !important; }
 body.light-mode .featured-item .item-details h3 { color: var(--accent-secondary-light) !important; }
 
-
-.menu-category { margin-bottom: 35px; padding-top: 70px; margin-top: -70px; } /* Offset for sticky nav scroll target */
+.menu-category { margin-bottom: 35px; padding-top: 70px; margin-top: -70px; }
 .menu-category h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--text-heading-dark); text-align: right; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--accent-primary-dark); display: inline-block; }
 body.light-mode .menu-category h2 { color: var(--text-heading-light); border-bottom-color: var(--accent-primary-light); }
-.menu-category > .category-description { display: none; } /* Hide general category description under H2 */
+.menu-category > .category-description { display: none; }
 
 .menu-items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
 .menu-item {
     background-color: var(--bg-content-dark); border: 1px solid var(--border-dark);
     border-radius: var(--border-radius); overflow: hidden;
     box-shadow: 0 2px 5px var(--shadow-base-dark);
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, opacity 0.4s ease; /* Slower opacity transition */
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, opacity 0.4s ease;
     display: flex; flex-direction: column;
-    opacity: 0; transform: translateY(30px); /* Initial state for animation */
+    opacity: 0; transform: translateY(30px);
 }
-.menu-item.is-visible { opacity: 1; transform: translateY(0); } /* Scroll animation visible state */
+.menu-item.is-visible { opacity: 1; transform: translateY(0); }
 body.light-mode .menu-item { background-color: var(--bg-content-light); border-color: var(--border-light); box-shadow: 0 2px 5px var(--shadow-base-light); }
-.menu-item:hover { transform: translateY(-5px) scale(1.015); box-shadow: 0 5px 12px var(--shadow-base-dark); } /* Adjusted hover */
+.menu-item:hover { transform: translateY(-5px) scale(1.015); box-shadow: 0 5px 12px var(--shadow-base-dark); }
 body.light-mode .menu-item:hover { box-shadow: 0 5px 12px var(--shadow-base-light); }
 
 .item-image-placeholder { width: 100%; padding-top: 56.25%; background-color: var(--bg-main-dark); display: flex; align-items: center; justify-content: center; color: var(--text-secondary-dark); font-size: 0.85rem; position: relative; overflow: hidden; }
@@ -166,6 +164,10 @@ body.light-mode .site-footer { background-color: var(--bg-header-light); color: 
 .site-footer p { margin: 6px 0; font-size: 0.85rem; }
 .footer-hotline { color: var(--accent-secondary-dark) !important; font-weight: bold; }
 body.light-mode .footer-hotline { color: var(--accent-secondary-light) !important; }
+.branch-addresses { line-height: 1.8; margin-bottom: 10px !important; }
+.branch-addresses strong { display: block; margin-bottom: 5px; color: var(--text-heading-dark); }
+body.light-mode .branch-addresses strong { color: var(--text-heading-light); }
+
 
 /* Focus states */
 button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--accent-secondary-dark); outline-offset: 2px; }
@@ -181,11 +183,11 @@ body.light-mode button:focus-visible, body.light-mode select:focus-visible, body
     html { scroll-padding-top: 45px; }
     .top-bar { flex-direction: column; gap: 10px; }
     .logo-area { order: -1; width: 100%; text-align: center; margin-bottom: 5px; }
-    .header-controls { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px;} /* Center controls */
-    #branch-select, .hotline-link-compact, #theme-toggle { font-size: 0.8rem; padding: 6px 10px; flex-grow: 1; text-align: center; min-width: 120px;}
-    #theme-toggle { flex-grow: 0; min-width: auto; } /* Theme toggle should not grow too much */
+    .header-controls { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px;}
+    #branch-select, .hotline-link-compact, #theme-toggle { font-size: 0.8rem; padding: 6px 10px; flex-grow: 1; text-align: center; min-width: 100px;} /* Min-width to prevent too much squish */
+    #theme-toggle { flex-grow: 0; min-width: auto; }
     .tagline { display: none; }
     #category-nav-container { top: 0; }
     .menu-items-grid { grid-template-columns: 1fr; }
     .menu-category h2 { font-size: 1.3rem; }
-} 
+}
