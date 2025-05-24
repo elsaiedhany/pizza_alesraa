@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بيتزا الإسراء - الطعم الأصلي بشكل جديد!</title>
+    <title>بيتزا الإسراء - منيو موحد لجميع فروعنا!</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    </head>
+</head>
 <body class="dark-mode">
     <header class="site-header">
         <div class="top-bar container">
@@ -16,14 +16,6 @@
                 <h1>بيتزا الإسراء</h1>
             </div>
             <div class="header-controls">
-                <div class="branch-selector-compact">
-                    <label for="branch-select" class="sr-only"></label> 
-                    <select id="branch-select" aria-label="اختيار الفرع">
-                        <option value="senbellawein" selected>السنبلاوين</option> 
-                        <option value="tanta">طنطا</option>
-                        <option value="mitghamr">ميت غمر</option>
-                    </select>
-                </div>
                 <a href="tel:15410" class="hotline-link-compact" aria-label="اتصل بنا للطلبات">
                     <span class="icon-phone">📞</span> 15410
                 </a>
@@ -49,9 +41,7 @@
         </section>
 
         <div id="menu-display-area" class="menu-content-area">
-            
-            <div id="menu-senbellawein" class="branch-menu"> 
-                <section id="senbellawein-mix" class="menu-category" data-category-name="الميكسات">
+            <div id="unified-menu" class="branch-menu active-menu"> <section id="mix-pizzas" class="menu-category" data-category-name="الميكسات">
                     <h2>الميكسات</h2>
                     <div class="menu-items-grid">
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>مكس دجاج</span></div><div class="item-content"><div class="item-details"><h3>مكس دجاج</h3><p class="description">صوص، خضار، موتزاريلا، قطع دجاج، استربس، شيش طاووق.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
@@ -71,8 +61,8 @@
                     <button class="show-more-button">عرض المزيد من الميكسات</button>
                 </section>
 
-                <section id="senbellawein-meat" class="menu-category" data-category-name="اللحوم">
-                    <h2>اللحوم</h2>
+                <section id="meat-pizzas" class="menu-category" data-category-name="بيتزا اللحوم">
+                    <h2>بيتزا اللحوم</h2>
                     <div class="menu-items-grid">
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>هوت دوج</span></div><div class="item-content"><div class="item-details"><h3>هوت دوج</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">110</span></span><span>M:<span class="price">140</span></span><span>L:<span class="price">160</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>بسطرمة</span></div><div class="item-content"><div class="item-details"><h3>بسطرمة</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">115</span></span><span>M:<span class="price">145</span></span><span>L:<span class="price">165</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
@@ -81,8 +71,8 @@
                     </div>
                 </section>
                 
-                <section id="senbellawein-cheese" class="menu-category" data-category-name="الجبن">
-                    <h2>الجبن</h2>
+                <section id="cheese-pizzas" class="menu-category" data-category-name="بيتزا الجبن">
+                    <h2>بيتزا الجبن</h2>
                     <div class="menu-items-grid">
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>مارجريتا</span></div><div class="item-content"><div class="item-details"><h3>مارجريتا</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">105</span></span><span>M:<span class="price">130</span></span><span>L:<span class="price">150</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>خضروات</span></div><div class="item-content"><div class="item-details"><h3>خضروات</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">110</span></span><span>M:<span class="price">135</span></span><span>L:<span class="price">160</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
@@ -91,8 +81,8 @@
                     </div>
                 </section>
 
-                <section id="senbellawein-chicken" class="menu-category" data-category-name="الفراخ">
-                    <h2>الفراخ</h2>
+                <section id="chicken-pizzas" class="menu-category" data-category-name="بيتزا الفراخ">
+                    <h2>بيتزا الفراخ</h2>
                     <div class="menu-items-grid">
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>دجاج</span></div><div class="item-content"><div class="item-details"><h3>دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">150</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>شيش طاووق</span></div><div class="item-content"><div class="item-details"><h3>شيش طاووق</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">150</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
@@ -101,11 +91,11 @@
                         <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>تشيكن باربيكيو</span></div><div class="item-content"><div class="item-details"><h3>تشيكن باربيكيو</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">125</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">175</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                         <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>تشيكن رانش</span></div><div class="item-content"><div class="item-details"><h3>تشيكن رانش</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">130</span></span><span>M:<span class="price">160</span></span><span>L:<span class="price">180</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                     </div>
-                    <button class="show-more-button">عرض المزيد من الفراخ</button>
+                    <button class="show-more-button">عرض المزيد من بيتزا الفراخ</button>
                 </section>               
 
-                <section id="senbellawein-seafood" class="menu-category" data-category-name="البحريات">
-                    <h2>البحريات</h2>
+                <section id="seafood-pizzas" class="menu-category" data-category-name="بيتزا البحريات">
+                    <h2>بيتزا البحريات</h2>
                     <div class="menu-items-grid">
                          <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>تونا</span></div><div class="item-content"><div class="item-details"><h3>تونا</h3><p class="description">صوص، تونا، فلفل، زيتون.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">125</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">175</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                          <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>جمبري</span></div><div class="item-content"><div class="item-details"><h3>جمبري</h3><p class="description">صوص، جمبري، فلفل، زيتون.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">125</span></span><span>M:<span class="price">160</span></span><span>L:<span class="price">180</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
@@ -113,10 +103,10 @@
                          <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>سي فود</span></div><div class="item-content"><div class="item-details"><h3>سي فود</h3><p class="description">ميكس بحريات متنوع.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">135</span></span><span>M:<span class="price">170</span></span><span>L:<span class="price">190</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                          <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>سي فود رانش</span></div><div class="item-content"><div class="item-details"><h3>سي فود رانش</h3><p class="description">ميكس بحريات مع صوص الرانش.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">140</span></span><span>M:<span class="price">175</span></span><span>L:<span class="price">195</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                     </div>
-                     <button class="show-more-button">عرض المزيد من البحريات</button>
+                     <button class="show-more-button">عرض المزيد من بيتزا البحريات</button>
                 </section>
 
-                <section id="senbellawein-extras" class="menu-category" data-category-name="إضافات البيتزا والكريبات">
+                <section id="extras-pizza-crepe" class="menu-category" data-category-name="إضافات البيتزا والكريبات">
                     <h2>إضافات البيتزا والكريبات</h2>
                     <div class="menu-items-grid">
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>موتزاريلا</span></div><div class="item-content"><div class="item-details"><h3>موتزاريلا</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">20</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
@@ -129,16 +119,16 @@
                     <button class="show-more-button">عرض المزيد من الإضافات</button>
                 </section>
 
-                <section id="senbellawein-side-items" class="menu-category" data-category-name="أطباق جانبية">
+                <section id="side-items" class="menu-category" data-category-name="أطباق جانبية">
                     <h2>أطباق جانبية</h2>
                     <div class="menu-items-grid">
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>كلو سلو</span></div><div class="item-content"><div class="item-details"><h3>كلو سلو</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">30</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>بطاطس فارم</span></div><div class="item-content"><div class="item-details"><h3>بطاطس فارم</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">25</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>علبة شيدر</span></div><div class="item-content"><div class="item-details"><h3>علبة شيدر</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">30</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
-                    </div>
+                        </div>
                 </section>
 
-                 <section id="senbellawein-pasta" class="menu-category" data-category-name="المكرونات">
+                 <section id="pastas" class="menu-category" data-category-name="المكرونات">
                     <h2>المكرونات</h2>
                     <div class="menu-items-grid">
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>خضار بالمشروم</span></div><div class="item-content"><div class="item-details"><h3>خضار بالمشروم</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">65</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
@@ -151,34 +141,67 @@
                     <button class="show-more-button">عرض المزيد من المكرونات</button>
                 </section>
 
-                <section id="senbellawein-crepes" class="menu-category" data-category-name="الكريبات">
+                <section id="crepes" class="menu-category" data-category-name="الكريبات">
                     <h2>الكريبات</h2>
                     <div class="menu-items-grid">
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>كريب بطاطس</span></div><div class="item-content"><div class="item-details"><h3>كريب بطاطس</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">40</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>كريب مكس تشيز</span></div><div class="item-content"><div class="item-details"><h3>كريب مكس تشيز</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">50</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>كريب هوت دوج</span></div><div class="item-content"><div class="item-details"><h3>كريب هوت دوج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">60</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
-                         <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب الإسراء</span></div><div class="item-content"><div class="item-details"><h3>كريب الإسراء (مكس اكسترا)</h3><p class="description">خلطة الإسراء السرية في كريب ولا أروع.</p></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">85</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب كفتة</span></div><div class="item-content"><div class="item-details"><h3>كريب كفتة</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">65</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب برجر لحم</span></div><div class="item-content"><div class="item-details"><h3>كريب برجر لحم</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">70</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب مكس لحوم</span></div><div class="item-content"><div class="item-details"><h3>كريب مكس لحوم</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">75</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب شاورما دجاج</span></div><div class="item-content"><div class="item-details"><h3>كريب شاورما دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">70</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب استربس</span></div><div class="item-content"><div class="item-details"><h3>كريب استربس (حار/بارد)</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">75</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب شيش طاووق</span></div><div class="item-content"><div class="item-details"><h3>كريب شيش طاووق</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">75</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب كوردن بلو</span></div><div class="item-content"><div class="item-details"><h3>كريب كوردن بلو</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">80</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب فاهيتا دجاج</span></div><div class="item-content"><div class="item-details"><h3>كريب فاهيتا دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">75</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب سوبر كرانشي</span></div><div class="item-content"><div class="item-details"><h3>كريب سوبر كرانشي</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">80</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب زنجر</span></div><div class="item-content"><div class="item-details"><h3>كريب زنجر</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">75</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب مكس دجاج</span></div><div class="item-content"><div class="item-details"><h3>كريب مكس دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">80</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب جمبري بانيه</span></div><div class="item-content"><div class="item-details"><h3>كريب جمبري بانيه</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">85</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كريب سي فود</span></div><div class="item-content"><div class="item-details"><h3>كريب سي فود</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">90</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                     </div>
                     <button class="show-more-button">عرض المزيد من الكريبات</button>
                 </section>
 
-                <section id="senbellawein-shawerma" class="menu-category" data-category-name="الشاورما">
-                    <h2>الشاورما</h2>
+                <section id="crepe-mix-extra" class="menu-category" data-category-name="كريب مكس إكسترا">
+                    <h2>كريب مكس إكسترا</h2>
                     <div class="menu-items-grid">
-                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>ساندوتش سوري دجاج</span></div><div class="item-content"><div class="item-details"><h3>ساندوتش سوري دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">50</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
-                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>فتة شاورما دجاج</span></div><div class="item-content"><div class="item-details"><h3>فتة شاورما دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">70</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
-                        </div>
-                    <button class="show-more-button">عرض المزيد من الشاورما</button>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>كرانشي تشيكن حار</span></div><div class="item-content"><div class="item-details"><h3>كرانشي تشيكن حار</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">80</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>زنجر تشيكن حار</span></div><div class="item-content"><div class="item-details"><h3>زنجر تشيكن حار</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">80</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>سويت تشيكن حار</span></div><div class="item-content"><div class="item-details"><h3>سويت تشيكن حار</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">80</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>مكس تشيكن رانش</span></div><div class="item-content"><div class="item-details"><h3>مكس تشيكن رانش</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">85</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>الإسراء (كريب)</span></div><div class="item-content"><div class="item-details"><h3>الإسراء</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">90</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                    </div>
+                    <button class="show-more-button">عرض المزيد</button>
                 </section>
 
+                <section id="shawerma" class="menu-category" data-category-name="الشاورما">
+                    <h2>الشاورما</h2>
+                    <div class="menu-items-grid">
+                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>ساندوتش سوري دجاج</span></div><div class="item-content"><div class="item-details"><h3>ساندوتش سوري دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">50</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>ساندوتش سوري بطاطس</span></div><div class="item-content"><div class="item-details"><h3>ساندوتش سوري بطاطس</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">30</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>ساندوتش سوري كفتة</span></div><div class="item-content"><div class="item-details"><h3>ساندوتش سوري كفتة</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">55</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>ساندوتش استربس</span></div><div class="item-content"><div class="item-details"><h3>ساندوتش استربس (حار/بارد)</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">60</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>فتة شاورما دجاج</span></div><div class="item-content"><div class="item-details"><h3>فتة شاورما دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">70</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>وجبة عربي دجاج</span></div><div class="item-content"><div class="item-details"><h3>وجبة عربي دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">75</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>ربع كيلو شاورما</span></div><div class="item-content"><div class="item-details"><h3>ربع كيلو شاورما</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">80</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>وجبة رز وشاورما</span></div><div class="item-content"><div class="item-details"><h3>وجبة رز وشاورما</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">70</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>وجبة فرى ميلرز</span></div><div class="item-content"><div class="item-details"><h3>وجبة فرى ميلرز</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">80</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>وجبة ريزو بصوص تشيكن حار</span></div><div class="item-content"><div class="item-details"><h3>وجبة ريزو بصوص تشيكن حار</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">75</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>طبق رز بسمتي</span></div><div class="item-content"><div class="item-details"><h3>طبق رز بسمتي</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">30</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>تومية</span></div><div class="item-content"><div class="item-details"><h3>تومية</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">12</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                    </div>
+                    <button class="show-more-button">عرض المزيد من الشاورما</button>
+                </section>
             </div>
 
             <div id="menu-tanta" class="branch-menu">
-                <p style="text-align:center; padding: 40px; font-size: 1.2em;">محتوى منيو طنطا سيكون مطابقاً لمنيو السنبلاوين. يرجى نسخ أقسام منيو السنبلاوين ولصقها هنا مع تغيير IDs الأقسام إذا لزم الأمر (مثال: senbellawein-pizzas تصبح tanta-pizzas).</p>
+                <p style="text-align:center; padding: 40px; font-size: 1.2em;">يتم الآن تحميل منيو طنطا... (سيكون نفس منيو السنبلاوين الموحد)</p>
             </div>
 
             <div id="menu-mitghamr" class="branch-menu">
-                <p style="text-align:center; padding: 40px; font-size: 1.2em;">محتوى منيو ميت غمر سيكون مطابقاً لمنيو السنبلاوين. يرجى نسخ أقسام منيو السنبلاوين ولصقها هنا مع تغيير IDs الأقسام إذا لزم الأمر (مثال: senbellawein-pizzas تصبح mitghamr-pizzas).</p>
+                 <p style="text-align:center; padding: 40px; font-size: 1.2em;">يتم الآن تحميل منيو ميت غمر... (سيكون نفس منيو السنبلاوين الموحد)</p>
             </div>
         </div>
     </main>
@@ -186,11 +209,12 @@
     <footer class="site-footer">
         <div class="container">
             <p class="branch-addresses">
-                <strong>فروعنا:</strong><br>
+                <strong>هذا المنيو موحد لجميع فروعنا:</strong><br>
                 طنطا: الإستاد - شارع الجيش<br>
                 السنبلاوين: شارع الزراعية<br>
                 ميت غمر: شارع بورسعيد بجوار مطبعة السعادة
             </p>
+            <hr class="footer-divider">
             <p>&copy; <span id="currentYear"></span> بيتزا الإسراء. جميع الحقوق محفوظة.</p>
             <p>للطلبات: <a href="tel:15410" class="footer-hotline">15410</a></p>
         </div>
@@ -200,4 +224,4 @@
 
     <script src="script.js" defer></script>
 </body>
-</html>
+</html> 
