@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggleButton = document.getElementById('theme-toggle');
-    // const branchSelect = document.getElementById('branch-select'); // No longer needed
+    const branchSelect = document.getElementById('branch-select'); // مازال موجوداً في HTML لكن لن نستخدمه لتبديل المحتوى
     const categoryNavContainer = document.getElementById('category-nav-container');
     const categoryLinksListUl = document.getElementById('category-links-list');
     
@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('back-to-top');
     const featuredItemsGrid = document.getElementById('featured-items-grid');
     const featuredItemsSection = document.getElementById('featured-items-section');
+
+    // المنيو الموحد هو الآن محتوى السنبلاوين المبدئي
+    const unifiedMenuContentSource = document.getElementById('menu-senbellawein');
 
     const MAX_VISIBLE_ITEMS_DEFAULT = 3; 
 
@@ -35,14 +38,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Unified Menu Logic ---
-    // The active menu is now always the 'unified-menu' (formerly senbellawein's detailed content)
-    const unifiedMenuDiv = document.getElementById('unified-menu'); // Or whatever the ID of the single menu div is
+    function populateAndActivateUnifiedMenu() {
+        if (!unifiedMenuContentSource) return;
 
-    function updateCategoryNavigationForUnifiedMenu() {
-        if (!categoryLinksListUl || !unifiedMenuDiv ) return;
+        // جعل منيو السنبلاوين (المصدر) هو النشط والظاهر
+        unifiedMenuContentSource.classList.add('active-menu');
+        unifiedMenuContentSource.style.display = 'block'; // Ensure it's visible
+
+        // نسخ محتوى السنبلاوين إلى طنطا وميت غمر (لأن المنيو موحد)
+        const tantaMenuDiv = document.getElementById('menu-tanta');
+        const mitghamrMenuDiv = document.getElementById('menu-mitghamr');
+
+        if (tantaMenuDiv) {
+            tantaMenuDiv.innerHTML = unifiedMenuContentSource.innerHTML;
+            // تعديل IDs الأقسام داخل منيو طنطا المنسوخ ليكون فريداً إذا أردنا تتبع مختلف
+            // لكن بما أن المحتوى موحد، والـ JS سيتعامل مع الـ active-menu، قد لا نحتاج لتغيير IDs الأقسام المنسوخة
+            // لكن لضمان عمل الـ scroll spy بشكل مثالي، يجب أن تكون IDs الأقسام فريدة لكل حاوية branch-menu
+            // أو نعتمد على أن JS للـ scroll spy سيبحث فقط داخل الـ active-menu
+             tantaMenuDiv.querySelectorAll('.menu-category').forEach(cat => {
+                if (cat.id && cat.id.startsWith('senbellawein-')) {
+                    cat.id = cat.id.replace('senbellawein-', 'tanta-');
+                }
+            });
+        }
+        if (mitghamrMenuDiv) {
+            mitghamrMenuDiv.innerHTML = unifiedMenuContentSource.innerHTML;
+            mitghamrMenuDiv.querySelectorAll('.menu-category').forEach(cat => {
+                 if (cat.id && cat.id.startsWith('senbellawein-')) {
+                    cat.id = cat.id.replace('senbellawein-', 'mitghamr-');
+                }
+            });
+        }
+        
+        // الآن بعد أن أصبح لدينا منيو واحد (محتوى السنبلاوين)، نقوم بتهيئته
+        populateFeaturedItemsForUnifiedMenu(unifiedMenuContentSource); 
+        updateCategoryNavigationForUnifiedMenu(unifiedMenuContentSource); 
+        initializeShowMoreForCategories(unifiedMenuContentSource);
+        observeMenuItems(unifiedMenuContentSource); 
+        if (featuredItemsGrid && featuredItemsGrid.children.length > 0) {
+            observeMenuItems(featuredItemsGrid);
+        }
+    }
+
+
+    function updateCategoryNavigationForUnifiedMenu(activeMenuDiv) {
+        if (!categoryLinksListUl || !activeMenuDiv) return;
         categoryLinksListUl.innerHTML = ''; 
 
-        // Add link for Featured Items first
         if (featuredItemsSection && featuredItemsSection.style.display !== 'none' && featuredItemsGrid && featuredItemsGrid.children.length > 0) {
             const featuredCatId = featuredItemsSection.id;
             const featuredCatNameElement = featuredItemsSection.querySelector('h2');
@@ -50,17 +92,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (featuredCatId && featuredCatName) {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
-                link.href = `#${featuredCatId}`;
+                link.href = `#${featuredCatId}`; // هذا الـ ID يجب أن يكون في الصفحة
                 link.textContent = featuredCatName;
                 listItem.appendChild(link);
                 categoryLinksListUl.appendChild(listItem);
             }
         }
         
-        const categories = unifiedMenuDiv.querySelectorAll('.menu-category:not(.featured-items)');
+        const categories = activeMenuDiv.querySelectorAll('.menu-category:not(.featured-items)');
         categories.forEach(category => {
-            const categoryId = category.id;
-            // Use data-category-name for cleaner titles in nav
+            const categoryId = category.id; // IDs الأقسام يجب أن تكون فريدة الآن داخل unified-menu
             const categoryName = category.dataset.categoryName || category.querySelector('h2')?.textContent.trim();
             
             if (categoryId && categoryName) {
@@ -77,17 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // --- Featured Items for Unified Menu ---
-    function populateFeaturedItemsForUnifiedMenu() {
-        if (!featuredItemsGrid || !featuredItemsSection || !unifiedMenuDiv) return;
+    function populateFeaturedItemsForUnifiedMenu(activeMenuDiv) {
+        if (!featuredItemsGrid || !featuredItemsSection || !activeMenuDiv) return;
         featuredItemsGrid.innerHTML = ''; 
 
         const itemsToConsiderForFeatured = [];
-        unifiedMenuDiv.querySelectorAll('.menu-category:not(.featured-items) .menu-item').forEach(item => {
+        activeMenuDiv.querySelectorAll('.menu-category:not(.featured-items) .menu-item').forEach(item => {
             itemsToConsiderForFeatured.push(item);
         });
 
         let count = 0;
-        for (let i = 0; i < itemsToConsiderForFeatured.length && count < 3; i++) { // Show 3 featured
+        // اختيار أول 3 أصناف كأصناف مميزة (يمكن تغيير هذا المنطق)
+        for (let i = 0; i < itemsToConsiderForFeatured.length && count < 3; i++) {
             const clonedItem = itemsToConsiderForFeatured[i].cloneNode(true);
             clonedItem.classList.add('featured-item'); 
             clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
@@ -95,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clonedItem.style.transform = 'translateY(0)';
             const clonedShowMore = clonedItem.querySelector('.show-more-button');
             if(clonedShowMore) clonedShowMore.remove();
+            
             featuredItemsGrid.appendChild(clonedItem);
             count++;
         }
@@ -105,10 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             featuredItemsSection.style.display = 'block'; 
             observeMenuItems(featuredItemsGrid); 
         }
-        // Update category navigation AFTER featured items section visibility is set
-        updateCategoryNavigationForUnifiedMenu();
     }
-
 
     // --- "Show More" Logic (remains mostly the same, targets items in unified menu) ---
     function toggleExtraItems(categoryDiv, button) {
@@ -129,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    function initializeShowMoreForCategories(menuContainer) {
+    function initializeShowMoreForCategories(menuContainer) { // menuContainer is now unifiedMenuDiv
         const categories = menuContainer.querySelectorAll('.menu-category:not(.featured-items)');
         categories.forEach(categoryDiv => {
             const itemsGrid = categoryDiv.querySelector('.menu-items-grid');
@@ -181,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const navLinks = categoryLinksListUl.querySelectorAll('a');
         const sectionsToSpy = [];
-        if (featuredItemsSection && featuredItemsSection.style.display !== 'none' && featuredItemsGrid.children.length > 0) {
+        if (featuredItemsSection && featuredItemsSection.style.display !== 'none' && featuredItemsGrid && featuredItemsGrid.children.length > 0) {
             sectionsToSpy.push(featuredItemsSection);
         }
         sectionsToSpy.push(...unifiedMenuDiv.querySelectorAll('.menu-category:not(.featured-items)'));
@@ -243,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.unobserve(entry.target); 
             }
         });
-    }, { threshold: 0.05 }); // Reduced threshold for earlier animation trigger
+    }, { threshold: 0.05 }); 
 
     function observeMenuItems(parentElement) { 
         const itemsToAnimate = parentElement.querySelectorAll('.menu-item.animate-on-scroll');
@@ -256,16 +296,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Initial Setup ---
-    // No branch selector, so directly initialize for the unified menu
+    // No branch selector logic needed for displaying menus, only one main menu div ('unified-menu')
+    // which is already set to active-menu in HTML.
+    // We just need to initialize its features.
     if (unifiedMenuDiv) {
-        // The 'active-menu' class is already on the unified-menu div in HTML
-        // So, just populate nav, featured, showMore, and animations
-        populateFeaturedItemsForUnifiedMenu(); // This will call updateCategoryNavigation internally now
-        initializeShowMoreForCategories(unifiedMenuDiv);
-        observeMenuItems(unifiedMenuDiv); 
-        if (featuredItemsGrid.children.length > 0) { // Observe featured items if they were populated
-            observeMenuItems(featuredItemsGrid);
-        }
+        populateAndActivateUnifiedMenu(); // This will set up everything for the unified menu
     }
     
     // Event delegation for "Add to Cart"
@@ -276,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`تمت إضافة "${itemName}" للسلة (وظيفة تجريبية).`);
         }
     }
-    // Attach to a common parent for all menu items (including featured)
     const mainElement = document.querySelector('.site-main');
     if (mainElement) {
         mainElement.addEventListener('click', handleAddToCartClick);
@@ -287,5 +321,5 @@ document.addEventListener('DOMContentLoaded', () => {
         currentYearSpan.textContent = new Date().getFullYear();
     }
     
-    handleScrollSpy(); // Initial call
+    handleScrollSpy(); // Initial call for scroll spy
 });
