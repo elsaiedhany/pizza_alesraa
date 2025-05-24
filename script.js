@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggleButton = document.getElementById('theme-toggle');
-    const branchSelect = document.getElementById('branch-select'); // مازال موجوداً في HTML لكن لن نستخدمه لتبديل المحتوى
+    // const branchSelect = document.getElementById('branch-select'); // No longer used for content switching
     const categoryNavContainer = document.getElementById('category-nav-container');
     const categoryLinksListUl = document.getElementById('category-links-list');
     
@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const featuredItemsGrid = document.getElementById('featured-items-grid');
     const featuredItemsSection = document.getElementById('featured-items-section');
 
-    // المنيو الموحد هو الآن محتوى السنبلاوين المبدئي
-    const unifiedMenuContentSource = document.getElementById('menu-senbellawein');
+    // The unified menu is the content within the #unified-menu div
+    const unifiedMenuDiv = document.getElementById('unified-menu');
 
     const MAX_VISIBLE_ITEMS_DEFAULT = 3; 
 
@@ -38,43 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Unified Menu Logic ---
-    function populateAndActivateUnifiedMenu() {
-        if (!unifiedMenuContentSource) return;
-
-        // جعل منيو السنبلاوين (المصدر) هو النشط والظاهر
-        unifiedMenuContentSource.classList.add('active-menu');
-        unifiedMenuContentSource.style.display = 'block'; // Ensure it's visible
-
-        // نسخ محتوى السنبلاوين إلى طنطا وميت غمر (لأن المنيو موحد)
-        const tantaMenuDiv = document.getElementById('menu-tanta');
-        const mitghamrMenuDiv = document.getElementById('menu-mitghamr');
-
-        if (tantaMenuDiv) {
-            tantaMenuDiv.innerHTML = unifiedMenuContentSource.innerHTML;
-            // تعديل IDs الأقسام داخل منيو طنطا المنسوخ ليكون فريداً إذا أردنا تتبع مختلف
-            // لكن بما أن المحتوى موحد، والـ JS سيتعامل مع الـ active-menu، قد لا نحتاج لتغيير IDs الأقسام المنسوخة
-            // لكن لضمان عمل الـ scroll spy بشكل مثالي، يجب أن تكون IDs الأقسام فريدة لكل حاوية branch-menu
-            // أو نعتمد على أن JS للـ scroll spy سيبحث فقط داخل الـ active-menu
-             tantaMenuDiv.querySelectorAll('.menu-category').forEach(cat => {
-                if (cat.id && cat.id.startsWith('senbellawein-')) {
-                    cat.id = cat.id.replace('senbellawein-', 'tanta-');
-                }
-            });
+    function initializeUnifiedMenu() {
+        if (!unifiedMenuDiv) {
+            console.error("Unified menu container not found!");
+            return;
         }
-        if (mitghamrMenuDiv) {
-            mitghamrMenuDiv.innerHTML = unifiedMenuContentSource.innerHTML;
-            mitghamrMenuDiv.querySelectorAll('.menu-category').forEach(cat => {
-                 if (cat.id && cat.id.startsWith('senbellawein-')) {
-                    cat.id = cat.id.replace('senbellawein-', 'mitghamr-');
-                }
-            });
-        }
+
+        // Make sure the unified menu is visible (it has .active-menu by default in HTML)
+        unifiedMenuDiv.style.display = 'block'; 
         
-        // الآن بعد أن أصبح لدينا منيو واحد (محتوى السنبلاوين)، نقوم بتهيئته
-        populateFeaturedItemsForUnifiedMenu(unifiedMenuContentSource); 
-        updateCategoryNavigationForUnifiedMenu(unifiedMenuContentSource); 
-        initializeShowMoreForCategories(unifiedMenuContentSource);
-        observeMenuItems(unifiedMenuContentSource); 
+        // The content for other branches is just for show if someone inspects HTML,
+        // but we will hide them explicitly here to be safe and ensure only unified menu is targeted by JS.
+        const tantaMenu = document.getElementById('menu-tanta');
+        const mitghamrMenu = document.getElementById('menu-mitghamr');
+        if(tantaMenu) tantaMenu.style.display = 'none';
+        if(mitghamrMenu) mitghamrMenu.style.display = 'none';
+
+
+        populateFeaturedItemsForUnifiedMenu(unifiedMenuDiv); 
+        updateCategoryNavigationForUnifiedMenu(unifiedMenuDiv); 
+        initializeShowMoreForCategories(unifiedMenuDiv);
+        observeMenuItems(unifiedMenuDiv); 
         if (featuredItemsGrid && featuredItemsGrid.children.length > 0) {
             observeMenuItems(featuredItemsGrid);
         }
@@ -92,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (featuredCatId && featuredCatName) {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
-                link.href = `#${featuredCatId}`; // هذا الـ ID يجب أن يكون في الصفحة
+                link.href = `#${featuredCatId}`;
                 link.textContent = featuredCatName;
                 listItem.appendChild(link);
                 categoryLinksListUl.appendChild(listItem);
@@ -101,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const categories = activeMenuDiv.querySelectorAll('.menu-category:not(.featured-items)');
         categories.forEach(category => {
-            const categoryId = category.id; // IDs الأقسام يجب أن تكون فريدة الآن داخل unified-menu
+            const categoryId = category.id;
             const categoryName = category.dataset.categoryName || category.querySelector('h2')?.textContent.trim();
             
             if (categoryId && categoryName) {
@@ -119,7 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Featured Items for Unified Menu ---
     function populateFeaturedItemsForUnifiedMenu(activeMenuDiv) {
-        if (!featuredItemsGrid || !featuredItemsSection || !activeMenuDiv) return;
+        if (!featuredItemsGrid || !featuredItemsSection || !activeMenuDiv) {
+             if(featuredItemsSection) featuredItemsSection.style.display = 'none';
+            return;
+        }
         featuredItemsGrid.innerHTML = ''; 
 
         const itemsToConsiderForFeatured = [];
@@ -128,19 +115,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         let count = 0;
-        // اختيار أول 3 أصناف كأصناف مميزة (يمكن تغيير هذا المنطق)
+        // Example: Pick first 3 items that have an image placeholder with content (not just "صورة...")
+        // This is a simple heuristic, can be improved.
         for (let i = 0; i < itemsToConsiderForFeatured.length && count < 3; i++) {
-            const clonedItem = itemsToConsiderForFeatured[i].cloneNode(true);
-            clonedItem.classList.add('featured-item'); 
-            clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
-            clonedItem.style.opacity = 1; 
-            clonedItem.style.transform = 'translateY(0)';
-            const clonedShowMore = clonedItem.querySelector('.show-more-button');
-            if(clonedShowMore) clonedShowMore.remove();
-            
-            featuredItemsGrid.appendChild(clonedItem);
-            count++;
+            const imgPlaceholder = itemsToConsiderForFeatured[i].querySelector('.item-image-placeholder span');
+            if (imgPlaceholder && imgPlaceholder.textContent && !imgPlaceholder.textContent.startsWith("صورة ")) { // Basic check
+                const clonedItem = itemsToConsiderForFeatured[i].cloneNode(true);
+                clonedItem.classList.add('featured-item'); 
+                clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
+                clonedItem.style.opacity = 1; 
+                clonedItem.style.transform = 'translateY(0)';
+                const clonedShowMore = clonedItem.querySelector('.show-more-button');
+                if(clonedShowMore) clonedShowMore.remove();
+                featuredItemsGrid.appendChild(clonedItem);
+                count++;
+            } else if (i < 3 && count === 0) { // Fallback: if no "good" images, just take first ones
+                const clonedItem = itemsToConsiderForFeatured[i].cloneNode(true);
+                clonedItem.classList.add('featured-item'); 
+                clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
+                clonedItem.style.opacity = 1; 
+                clonedItem.style.transform = 'translateY(0)';
+                const clonedShowMore = clonedItem.querySelector('.show-more-button');
+                if(clonedShowMore) clonedShowMore.remove();
+                featuredItemsGrid.appendChild(clonedItem);
+                count++;
+            }
         }
+
 
         if (count === 0) {
              featuredItemsSection.style.display = 'none';
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- "Show More" Logic (remains mostly the same, targets items in unified menu) ---
+    // --- "Show More" Logic ---
     function toggleExtraItems(categoryDiv, button) {
         const itemsGrid = categoryDiv.querySelector('.menu-items-grid');
         if (!itemsGrid) return;
@@ -169,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    function initializeShowMoreForCategories(menuContainer) { // menuContainer is now unifiedMenuDiv
+    function initializeShowMoreForCategories(menuContainer) { 
         const categories = menuContainer.querySelectorAll('.menu-category:not(.featured-items)');
         categories.forEach(categoryDiv => {
             const itemsGrid = categoryDiv.querySelector('.menu-items-grid');
@@ -296,11 +297,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Initial Setup ---
-    // No branch selector logic needed for displaying menus, only one main menu div ('unified-menu')
-    // which is already set to active-menu in HTML.
-    // We just need to initialize its features.
     if (unifiedMenuDiv) {
-        populateAndActivateUnifiedMenu(); // This will set up everything for the unified menu
+        initializeUnifiedMenu(); // This function will now handle all setup for the single menu
     }
     
     // Event delegation for "Add to Cart"
