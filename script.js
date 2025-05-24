@@ -2,11 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleButton = document.getElementById('theme-toggle');
     const branchSelect = document.getElementById('branch-select');
     const categoryNavContainer = document.getElementById('category-nav-container');
-    const categoryLinksListUl = document.createElement('ul'); // Create UL for nav links
-    if (categoryNavContainer) categoryNavContainer.appendChild(categoryLinksListUl);
+    const categoryLinksListUl = document.getElementById('category-links-list'); // Assuming this UL is now directly in HTML or created if not
     
     const menuDisplayArea = document.getElementById('menu-display-area');
-    let currentVisibleMenuItems = {}; 
     const MAX_VISIBLE_ITEMS_DEFAULT = 3; 
 
     // --- Theme Toggle ---
@@ -15,12 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('light-mode', isLight);
         document.body.classList.toggle('dark-mode', !isLight);
         if (themeToggleButton) {
-            themeToggleButton.querySelector('.icon-light').style.display = isLight ? 'none' : 'inline';
-            themeToggleButton.querySelector('.icon-dark').style.display = isLight ? 'inline' : 'none';
+            const lightIcon = themeToggleButton.querySelector('.icon-light');
+            const darkIcon = themeToggleButton.querySelector('.icon-dark');
+            if (lightIcon) lightIcon.style.display = isLight ? 'none' : 'inline';
+            if (darkIcon) darkIcon.style.display = isLight ? 'inline' : 'none';
         }
     }
-    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    applyTheme(savedTheme);
+    const preferredTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(preferredTheme);
 
     if (themeToggleButton) {
         themeToggleButton.addEventListener('click', () => {
@@ -41,31 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const categories = activeMenuDiv.querySelectorAll('.menu-category');
         categories.forEach(category => {
             const categoryId = category.id;
-            const categoryName = category.dataset.categoryName || category.querySelector('h2').textContent.replace(`(${branchValue})`, '').trim();
+            const categoryName = category.dataset.categoryName || category.querySelector('h2')?.textContent.replace(`(${branchValue})`, '').trim();
             
             if (categoryId && categoryName) {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
                 link.href = `#${categoryId}`;
                 link.textContent = categoryName;
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.querySelectorAll('#category-nav-container a').forEach(a => a.classList.remove('active'));
-                    this.classList.add('active');
-                    const targetElement = document.getElementById(this.hash.substring(1));
-                    if (targetElement) {
-                        // Calculate offset if category nav is sticky
-                        const navHeight = categoryNavContainer.offsetHeight;
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 20; // 20px buffer
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                    }
-                });
                 listItem.appendChild(link);
                 categoryLinksListUl.appendChild(listItem);
             }
         });
+        // Smooth scroll for new category links
+        setupCategoryLinkScrolling();
+        // Activate first link by default or based on scroll position
         if (categoryLinksListUl.querySelector('a')) {
-            categoryLinksListUl.querySelector('a').classList.add('active');
+           // categoryLinksListUl.querySelector('a').classList.add('active'); // Let scroll spy handle this
+           handleScrollSpy(); // Initial check
         }
     }
     
@@ -87,12 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!itemsGrid) return;
 
         const isExpanded = button.classList.toggle('expanded');
-        button.textContent = isExpanded ? 'عرض أقل' : `عرض المزيد من ${categoryDiv.dataset.categoryName || 'الأصناف'}`;
+        const categoryName = categoryDiv.dataset.categoryName || 'الأصناف';
+        button.textContent = isExpanded ? 'عرض أقل' : `عرض المزيد من ${categoryName}`;
         
         const allItems = Array.from(itemsGrid.querySelectorAll('.menu-item'));
         allItems.forEach((item, index) => {
             if (index >= MAX_VISIBLE_ITEMS_DEFAULT) {
-                item.style.display = isExpanded ? 'flex' : 'none';
+                // Toggle display. 'flex' is assumed for .menu-item
+                item.style.display = isExpanded ? 'flex' : 'none'; 
                 item.classList.toggle('extra-item', !isExpanded);
             }
         });
@@ -100,16 +94,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function initializeShowMoreForCategory(categoryDiv) {
         const itemsGrid = categoryDiv.querySelector('.menu-items-grid');
-        const showMoreButton = categoryDiv.querySelector('.show-more-button');
+        let showMoreButton = categoryDiv.querySelector('.show-more-button'); // Let, as we might replace it
+        
         if (!itemsGrid || !showMoreButton) {
             if(showMoreButton) showMoreButton.style.display = 'none';
             return;
         }
 
         const allItems = Array.from(itemsGrid.querySelectorAll('.menu-item'));
+        const categoryName = categoryDiv.dataset.categoryName || 'الأصناف';
+
         if (allItems.length > MAX_VISIBLE_ITEMS_DEFAULT) {
             showMoreButton.style.display = 'block';
-            const categoryName = categoryDiv.dataset.categoryName || 'الأصناف';
             showMoreButton.textContent = `عرض المزيد من ${categoryName}`;
             showMoreButton.classList.remove('expanded');
 
@@ -123,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             
-            // Event listener (clone to avoid multiple bindings if re-initialized)
             const newButton = showMoreButton.cloneNode(true);
             showMoreButton.parentNode.replaceChild(newButton, showMoreButton);
             newButton.addEventListener('click', () => toggleExtraItems(categoryDiv, newButton));
@@ -135,20 +130,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initializeShowMoreForBranch(branchMenuDiv) {
         const categories = branchMenuDiv.querySelectorAll('.menu-category');
-        categories.forEach(category => {
-            initializeShowMoreForCategory(category);
+        categories.forEach(categoryDiv => {
+            initializeShowMoreForCategory(categoryDiv);
+        });
+    }
+    
+    function setupCategoryLinkScrolling() {
+        const links = categoryLinksListUl.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('#category-nav-container a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+                const targetElement = document.querySelector(this.hash);
+                if (targetElement) {
+                    const navContainerHeight = categoryNavContainer ? categoryNavContainer.offsetHeight : 0;
+                    const controlsWrapperHeight = document.querySelector('.controls-wrapper') ? document.querySelector('.controls-wrapper').offsetHeight : 0;
+                    // const headerHeight = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 0;
+                    // Total offset for elements that become sticky above the target
+                    const totalOffset = navContainerHeight + controlsWrapperHeight + 20; // 20px buffer
+
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - totalOffset;
+                    
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
         });
     }
 
+
     // --- Initial Setup & Event Listeners ---
     if (branchSelect) {
-        updateActiveMenu(branchSelect.value); // Initialize on page load
+        updateActiveMenu(branchSelect.value); 
         branchSelect.addEventListener('change', function() {
             updateActiveMenu(this.value);
-            // Scroll to top of menu display area after branch change for better UX
-            if(menuDisplayArea) menuDisplayArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if(menuDisplayArea) {
+                // Scroll to a point slightly above the menu display area to account for sticky navs
+                 const controlsWrapperHeight = document.querySelector('.controls-wrapper') ? document.querySelector('.controls-wrapper').offsetHeight : 0;
+                 const offset = controlsWrapperHeight + 10; // 10px buffer
+                 const targetPosition = menuDisplayArea.getBoundingClientRect().top + window.pageYOffset - offset;
+                 window.scrollTo({ top: targetPosition > 0 ? targetPosition : 0, behavior: 'smooth'});
+            }
         });
-    } else { // Fallback if no branch selector
+    } else { 
         const firstBranchMenu = document.querySelector('.branch-menu');
         if(firstBranchMenu) {
             firstBranchMenu.classList.add('active-menu');
@@ -157,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Event delegation for "Add to Cart" buttons
     if (menuDisplayArea) {
         menuDisplayArea.addEventListener('click', function(event) {
             if (event.target.classList.contains('add-to-cart')) {
@@ -168,40 +191,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Update year in footer
     const currentYearSpan = document.getElementById('currentYear');
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 
-    // Active category link highlighting on scroll (Scroll Spy)
-    const categoryNavLinks = categoryNavContainer ? categoryNavContainer.querySelectorAll('ul a') : [];
-    const menuCategories = menuDisplayArea ? menuDisplayArea.querySelectorAll('.menu-category') : [];
+    // --- Scroll Spy for Category Navigation ---
+    function handleScrollSpy() {
+        if (!categoryNavContainer || !menuDisplayArea) return;
+        
+        const navLinks = categoryLinksListUl.querySelectorAll('a');
+        const categories = menuDisplayArea.querySelectorAll('.branch-menu.active-menu .menu-category');
+        if (navLinks.length === 0 || categories.length === 0) return;
 
-    function onScroll() {
-        let currentCategory = "";
-        menuCategories.forEach(category => {
+        let currentCategory = '';
+        const navContainerHeight = categoryNavContainer.offsetHeight;
+        const controlsWrapperHeight = document.querySelector('.controls-wrapper').offsetHeight;
+        const scrollSpyOffset = navContainerHeight + controlsWrapperHeight + 30; // Adjusted offset
+
+        categories.forEach(category => {
             const categoryTop = category.getBoundingClientRect().top;
-            // Adjust offset based on sticky nav height + some buffer
-            const offset = (categoryNavContainer ? categoryNavContainer.offsetHeight : 0) + 50; 
-            if (categoryTop <= offset) {
+            if (categoryTop <= scrollSpyOffset) {
                 currentCategory = category.getAttribute('id');
             }
         });
 
-        categoryNavLinks.forEach(link => {
+        navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${currentCategory}`) {
                 link.classList.add('active');
-                // Scroll the nav to keep active link in view if nav is scrollable horizontally
-                if(categoryNavContainer.scrollWidth > categoryNavContainer.clientWidth) {
+                // Scroll active link into view if category nav is horizontally scrollable
+                if (categoryNavContainer.scrollWidth > categoryNavContainer.clientWidth) {
                     link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
             }
         });
     }
-    if (categoryNavLinks.length > 0 && menuCategories.length > 0) {
-      window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', handleScrollSpy);
+    // Call once on load if there are categories
+    if (menuDisplayArea.querySelector('.branch-menu.active-menu .menu-category')) {
+        handleScrollSpy();
     }
-
 });
