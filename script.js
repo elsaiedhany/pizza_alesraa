@@ -1,205 +1,331 @@
-/* :root variables (using the refined palette from last good iteration) */
-:root {
-    /* Dark Mode (Default) */
-    --bg-main-dark: #161b22; --bg-content-dark: #1f242c; --bg-header-dark: #161b22; 
-    --bg-accent-dark: #2a3038; --text-primary-dark: #c9d1d9; --text-secondary-dark: #8b949e;
-    --text-heading-dark: #f0f6fc; --accent-primary-dark: #ef4444; --accent-secondary-dark: #f59e0b; 
-    --border-dark: #30363d; --shadow-base-dark: rgba(0, 0, 0, 0.3); --button-text-dark: #ffffff;
-
-    /* Light Mode */
-    --bg-main-light: #f9fafb; --bg-content-light: #ffffff; --bg-header-light: #ffffff;
-    --bg-accent-light: #e5e7eb; --text-primary-light: #24292f; --text-secondary-light: #57606a;
-    --text-heading-light: #111827; --accent-primary-light: #cb2431; --accent-secondary-light: #d97706;
-    --border-light: #d0d7de; --shadow-base-light: rgba(0, 0, 0, 0.08); --button-text-light: #ffffff;
-
-    --font-primary: 'Tajawal', 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    --border-radius: 6px; --transition-speed: 0.25s; --container-padding: 15px; --max-width: 1100px;
-}
-
-/* Base styles, Typography, Container, Header, Main Content, Footer - (Mostly as per the last refined version) */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 130px; /* Adjust for sticky elements */ }
-body { font-family: var(--font-primary); line-height: 1.6; background-color: var(--bg-main-dark); color: var(--text-primary-dark); direction: rtl; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; }
-body.light-mode { background-color: var(--bg-main-light); color: var(--text-primary-light); }
-h1, h2, h3 { font-weight: 700; line-height: 1.3; color: var(--text-heading-dark); }
-body.light-mode h1, body.light-mode h2, body.light-mode h3 { color: var(--text-heading-light); }
-p { color: var(--text-secondary-dark); margin-bottom: 1rem; }
-body.light-mode p { color: var(--text-secondary-light); }
-a { color: var(--accent-secondary-dark); text-decoration: none; transition: color var(--transition-speed) ease; }
-body.light-mode a { color: var(--accent-secondary-light); }
-a:hover { opacity: 0.8; }
-.container { width: 95%; max-width: var(--max-width); margin-left: auto; margin-right: auto; padding-left: var(--container-padding); padding-right: var(--container-padding); }
-
-.site-header { background-color: var(--bg-header-dark); padding: 10px 0; border-bottom: 1px solid var(--border-dark); }
-body.light-mode .site-header { background-color: var(--bg-header-light); border-bottom-color: var(--border-light); }
-.top-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-.logo-area h1 { font-size: clamp(1.6rem, 4vw, 2rem); margin: 0; color: var(--accent-primary-dark); font-weight: 900; }
-body.light-mode .logo-area h1 { color: var(--accent-primary-light); }
-.header-controls { display: flex; align-items: center; gap: 10px; }
-.branch-selector-compact label.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-#branch-select { padding: 7px 12px; border-radius: var(--border-radius); border: 1px solid var(--border-dark); background-color: var(--bg-content-dark); color: var(--text-primary-dark); font-family: inherit; font-size: 0.85rem; }
-body.light-mode #branch-select { background-color: var(--bg-content-light); color: var(--text-primary-light); border-color: var(--border-light); }
-.hotline-link-compact { color: var(--text-primary-dark); font-size: 0.85rem; font-weight: 500; padding: 7px 12px; border-radius: var(--border-radius); background-color: var(--bg-content-dark); border: 1px solid var(--border-dark); display: flex; align-items: center; gap: 5px; }
-body.light-mode .hotline-link-compact { color: var(--text-primary-light); background-color: var(--bg-content-light); border-color: var(--border-light); }
-.hotline-link-compact .icon-phone { font-size: 0.9em; color: var(--accent-primary-dark); }
-body.light-mode .hotline-link-compact .icon-phone { color: var(--accent-primary-light); }
-#theme-toggle { background: transparent; border: 1px solid var(--text-secondary-dark); color: var(--text-secondary-dark); padding: 7px 9px; border-radius: var(--border-radius); cursor: pointer; font-size: 1rem; line-height: 1; }
-body.light-mode #theme-toggle { border-color: var(--text-secondary-light); color: var(--text-secondary-light); }
-#theme-toggle .icon { transition: transform 0.3s ease; } #theme-toggle:hover .icon { transform: scale(1.1) rotate(15deg); }
-.icon-dark { display: none; } .icon-light { display: inline; }
-body.dark-mode .icon-dark { display: inline; } body.dark-mode .icon-light { display: none; }
-.tagline { font-size: clamp(0.8rem, 2vw, 0.9rem); text-align: center; color: var(--text-secondary-dark); margin-top: 8px; padding: 0; }
-body.light-mode .tagline { color: var(--text-secondary-light); }
-
-.site-main { padding-top: 15px; }
-#category-nav-container { background-color: var(--bg-accent-dark); padding: 8px 0; overflow-x: auto; white-space: nowrap; margin-bottom: 25px; border-radius: var(--border-radius); position: sticky; top: 0; z-index: 990; box-shadow: 0 2px 4px var(--shadow-base-dark); -webkit-overflow-scrolling: touch; }
-body.light-mode #category-nav-container { background-color: var(--bg-accent-light); box-shadow: 0 2px 4px var(--shadow-base-light); }
-#category-nav-container ul { list-style: none; padding: 0 var(--container-padding); margin: 0; display: flex; gap: 8px; }
-#category-nav-container li { display: inline-block; }
-#category-nav-container a { text-decoration: none; color: var(--text-primary-dark); padding: 8px 14px; font-weight: 500; font-size: 0.9rem; border-radius: var(--border-radius); display: block; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, box-shadow 0.1s ease; border: 1px solid transparent; }
-body.light-mode #category-nav-container a { color: var(--text-primary-light); }
-#category-nav-container a:hover { background-color: var(--bg-main-dark); color: var(--text-heading-dark); }
-body.light-mode #category-nav-container a:hover { background-color: var(--bg-main-light); color: var(--text-heading-light); }
-#category-nav-container a.active { background-color: var(--accent-primary-dark); color: var(--button-text-dark); font-weight: 700; box-shadow: inset 0 -2px 0 var(--accent-secondary-dark); }
-body.light-mode #category-nav-container a.active { background-color: var(--accent-primary-light); box-shadow: inset 0 -2px 0 var(--accent-secondary-light); }
-
-.menu-content-area { padding-top: 10px; }
-.branch-menu { display: none; }
-.branch-menu.active-menu { display: block; animation: fadeIn 0.5s ease-out; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-/* Featured Items Section */
-.featured-items {
-    background-color: var(--bg-content-dark);
-    padding: 25px var(--container-padding);
-    margin-bottom: 30px;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-dark);
-}
-body.light-mode .featured-items { background-color: var(--bg-content-light); border-color: var(--border-light); }
-.featured-items h2 {
-    font-size: clamp(1.5rem, 3.5vw, 2rem); color: var(--accent-secondary-dark); /* Gold for featured title */
-    text-align: center; margin-bottom: 10px; padding-bottom: 10px;
-    border-bottom: 2px solid var(--accent-primary-dark); display: inline-block;
-}
-body.light-mode .featured-items h2 { color: var(--accent-secondary-light); border-bottom-color: var(--accent-primary-light); }
-.featured-items .category-description { font-size: 1rem; text-align: center; margin-bottom: 20px; }
-.featured-grid { /* Can use the same .menu-items-grid or a specific one */ }
-.featured-item .item-details h3 { color: var(--accent-secondary-dark) !important; } /* Special color for featured item names */
-body.light-mode .featured-item .item-details h3 { color: var(--accent-secondary-light) !important; }
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleButton = document.getElementById('theme-toggle');
+    const branchSelect = document.getElementById('branch-select');
+    const categoryNavContainer = document.getElementById('category-nav-container');
+    const categoryLinksListUl = document.getElementById('category-links-list');
+    const menuDisplayArea = document.getElementById('menu-display-area');
+    const backToTopButton = document.getElementById('back-to-top');
+    const featuredItemsGrid = document.getElementById('featured-items-grid');
+    const featuredItemsSection = document.getElementById('featured-items-section');
 
 
-.menu-category { margin-bottom: 35px; padding-top: 70px; margin-top: -70px; }
-.menu-category h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--text-heading-dark); text-align: right; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--accent-primary-dark); display: inline-block; }
-body.light-mode .menu-category h2 { color: var(--text-heading-light); border-bottom-color: var(--accent-primary-light); }
-.menu-category .category-description { display: none; /* Hiding generic category description for cleaner look now */ }
+    const MAX_VISIBLE_ITEMS_DEFAULT = 3;
 
-.menu-items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
-.menu-item {
-    background-color: var(--bg-content-dark); border: 1px solid var(--border-dark);
-    border-radius: var(--border-radius); overflow: hidden;
-    box-shadow: 0 2px 5px var(--shadow-base-dark);
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, opacity var(--transition-speed) ease;
-    display: flex; flex-direction: column;
-    opacity: 0; /* For scroll animation */
-    transform: translateY(20px); /* For scroll animation */
-}
-.menu-item.is-visible { opacity: 1; transform: translateY(0); } /* Scroll animation visible state */
-body.light-mode .menu-item { background-color: var(--bg-content-light); border-color: var(--border-light); box-shadow: 0 2px 5px var(--shadow-base-light); }
-.menu-item:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 6px 12px var(--shadow-base-dark); }
-body.light-mode .menu-item:hover { box-shadow: 0 6px 12px var(--shadow-base-light); }
+    // --- Theme Toggle ---
+    function applyTheme(theme) {
+        const isLight = theme === 'light';
+        document.body.classList.toggle('light-mode', isLight);
+        document.body.classList.toggle('dark-mode', !isLight);
+        if (themeToggleButton) {
+            const lightIcon = themeToggleButton.querySelector('.icon-light');
+            const darkIcon = themeToggleButton.querySelector('.icon-dark');
+            if (lightIcon) lightIcon.style.display = isLight ? 'none' : 'inline';
+            if (darkIcon) darkIcon.style.display = isLight ? 'inline' : 'none';
+        }
+    }
+    const preferredTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(preferredTheme);
 
-.item-image-placeholder { width: 100%; padding-top: 56.25%; background-color: var(--bg-main-dark); display: flex; align-items: center; justify-content: center; color: var(--text-secondary-dark); font-size: 0.85rem; position: relative; overflow: hidden; }
-body.light-mode .item-image-placeholder { background-color: var(--bg-main-light); }
-.item-image-placeholder img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-.menu-item:hover .item-image-placeholder img { transform: scale(1.1); }
+    if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', () => {
+            let newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
 
-.item-content { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; }
-.item-details { flex-grow: 1; margin-bottom: 10px; }
-.item-details h3 { font-size: 1.1rem; margin-bottom: 6px; color: var(--text-heading-dark); transition: color var(--transition-speed) ease; }
-body.light-mode .item-details h3 { color: var(--text-heading-light); }
-.menu-item:hover .item-details h3 { color: var(--accent-secondary-dark); }
-body.light-mode .menu-item:hover .item-details h3 { color: var(--accent-secondary-light); }
-.item-details .description { font-size: 0.8rem; line-height: 1.5; margin-bottom: 8px; color: var(--text-secondary-dark); }
-body.light-mode .item-details .description { color: var(--text-secondary-light); }
+    // --- Branch Specific Menu & Category Navigation ---
+    function updateCategoryNavigation(branchValue) {
+        if (!categoryLinksListUl) return;
+        categoryLinksListUl.innerHTML = '';
+        const activeMenuDiv = document.getElementById(`menu-${branchValue}`);
+        if (!activeMenuDiv) return;
 
-.item-actions { margin-top: auto; }
-.sizes-prices { margin-bottom: 10px; text-align: right; }
-.sizes-prices span { display: block; margin-bottom: 3px; font-size: 0.85rem; color: var(--text-primary-dark); }
-body.light-mode .sizes-prices span { color: var(--text-primary-light); }
-.sizes-prices .price { font-weight: 700; color: var(--accent-secondary-dark); font-size: 1em; margin-right: 5px; }
-body.light-mode .sizes-prices .price { color: var(--accent-secondary-light); }
+        // Add link for Featured Items first if it exists and is visible
+        if (featuredItemsSection && featuredItemsSection.style.display !== 'none') {
+            const featuredCatId = featuredItemsSection.id;
+            const featuredCatName = featuredItemsSection.querySelector('h2')?.textContent.trim() || "أطباق مميزة";
+            if (featuredCatId && featuredCatName) {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `#${featuredCatId}`;
+                link.textContent = featuredCatName;
+                listItem.appendChild(link);
+                categoryLinksListUl.appendChild(listItem);
+            }
+        }
+        
+        const categories = activeMenuDiv.querySelectorAll('.menu-category:not(.featured-items)');
+        categories.forEach(category => {
+            const categoryId = category.id;
+            const categoryName = category.dataset.categoryName || category.querySelector('h2')?.textContent.trim();
+            if (categoryId && categoryName) {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `#${categoryId}`;
+                link.textContent = categoryName;
+                listItem.appendChild(link);
+                categoryLinksListUl.appendChild(listItem);
+            }
+        });
+        setupCategoryLinkScrolling();
+        handleScrollSpy();
+    }
 
-.add-to-cart, .show-more-button {
-    background-color: var(--accent-primary-dark); color: var(--button-text-dark);
-    padding: 9px 14px; border-radius: var(--border-radius); border: none; cursor: pointer;
-    font-weight: 600; font-size: 0.9rem; text-align: center; width: 100%;
-    transition: background-color var(--transition-speed) ease, transform 0.1s ease, box-shadow 0.2s ease;
-    box-shadow: 0 1px 2px var(--shadow-base-dark);
-}
-body.light-mode .add-to-cart, body.light-mode .show-more-button { background-color: var(--accent-primary-light); }
-.add-to-cart:hover, .show-more-button:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 3px 6px var(--shadow-base-dark); }
-.add-to-cart:active, .show-more-button:active { transform: translateY(0); opacity: 1; }
+    function updateActiveMenu(selectedBranchValue, isInitialLoad = false) {
+        document.querySelectorAll('.branch-menu').forEach(menu => menu.classList.remove('active-menu'));
+        const activeMenuDiv = document.getElementById(`menu-${selectedBranchValue}`);
+        if (activeMenuDiv) {
+            activeMenuDiv.classList.add('active-menu');
+            initializeShowMoreForBranch(activeMenuDiv);
+            observeMenuItems(activeMenuDiv);
+            populateFeaturedItems(selectedBranchValue); // Populate featured AFTER menu is active
+            updateCategoryNavigation(selectedBranchValue); // Update nav AFTER featured might be populated/shown
+            
+            if (!isInitialLoad && categoryNavContainer) {
+                 const navContainerTop = categoryNavContainer.getBoundingClientRect().top + window.pageYOffset;
+                 window.scrollTo({ top: navContainerTop - 10, behavior: 'smooth'}); // Scroll to top of nav
+            }
+        }
+    }
+    
+    // --- Featured Items ---
+    function populateFeaturedItems(branchValue) {
+        if (!featuredItemsGrid || !featuredItemsSection) return;
+        featuredItemsGrid.innerHTML = ''; 
 
-.show-more-button { margin-top: 12px; background-color: var(--bg-content-dark); color: var(--text-primary-dark); border: 1px solid var(--border-dark); }
-body.light-mode .show-more-button { background-color: var(--bg-content-light); color: var(--text-primary-light); border-color: var(--border-light); }
-.show-more-button:hover { background-color: var(--bg-accent-dark); }
-body.light-mode .show-more-button:hover { background-color: var(--bg-accent-light); }
-.menu-item.extra-item { display: none; } /* Still hidden by default, JS handles display */
+        const activeMenuDiv = document.getElementById(`menu-${branchValue}`);
+        if (!activeMenuDiv) {
+            featuredItemsSection.style.display = 'none';
+            return;
+        }
+        
+        // Example: Pick first 2-3 items from the active branch's first *actual* menu category
+        const firstRealCategory = activeMenuDiv.querySelector('.menu-category:not(.featured-items)');
+        if (!firstRealCategory) {
+            featuredItemsSection.style.display = 'none';
+            return;
+        }
 
-/* Back to Top Button */
-.back-to-top-button {
-    position: fixed;
-    bottom: 20px;
-    left: 20px; /* Changed to left for RTL, use right for LTR or adjust with [dir] */
-    background-color: var(--accent-secondary-dark);
-    color: var(--bg-main-dark);
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    font-size: 1.5rem;
-    line-height: 45px; /* Vertically center arrow */
-    text-align: center;
-    box-shadow: 0 2px 8px var(--shadow-base-dark);
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease, transform var(--transition-speed) ease;
-    z-index: 1000;
-}
-body.light-mode .back-to-top-button { background-color: var(--accent-secondary-light); color: var(--bg-main-light); }
-.back-to-top-button.show { opacity: 1; visibility: visible; transform: translateY(0); }
-.back-to-top-button:hover { opacity: 0.85; }
+        const itemsToFeature = Array.from(firstRealCategory.querySelectorAll('.menu-item'));
+        let count = 0;
+        
+        // Simple logic: take first 3, or fewer if not available
+        for (let i = 0; i < itemsToFeature.length && count < 3; i++) {
+            const clonedItem = itemsToFeature[i].cloneNode(true);
+            clonedItem.classList.add('featured-item'); 
+            clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
+            clonedItem.style.opacity = 1; 
+            clonedItem.style.transform = 'translateY(0)';
+            // Remove show more button if it gets cloned from a category item
+            const clonedShowMore = clonedItem.querySelector('.show-more-button');
+            if(clonedShowMore) clonedShowMore.remove();
+            
+            featuredItemsGrid.appendChild(clonedItem);
+            count++;
+        }
+
+        if (count === 0) {
+             featuredItemsSection.style.display = 'none';
+        } else {
+            featuredItemsSection.style.display = 'block';
+            observeMenuItems(featuredItemsGrid); // Animate featured items too
+        }
+    }
+
+    // --- "Show More" Logic ---
+    function toggleExtraItems(categoryDiv, button) {
+        const itemsGrid = categoryDiv.querySelector('.menu-items-grid');
+        if (!itemsGrid) return;
+        const isExpanded = button.classList.toggle('expanded');
+        const categoryName = categoryDiv.dataset.categoryName || 'الأصناف';
+        button.textContent = isExpanded ? 'عرض أقل' : `عرض المزيد من ${categoryName}`;
+        const allItems = Array.from(itemsGrid.querySelectorAll('.menu-item'));
+        allItems.forEach((item, index) => {
+            if (index >= MAX_VISIBLE_ITEMS_DEFAULT) {
+                item.style.display = isExpanded ? 'flex' : 'none';
+                item.classList.toggle('extra-item', !isExpanded);
+                // If expanded, make sure it's observed for animation
+                if (isExpanded && item.classList.contains('animate-on-scroll')) {
+                    item.classList.remove('is-visible'); // Reset animation state
+                    itemObserver.observe(item);
+                }
+            }
+        });
+    }
+    function initializeShowMoreForCategory(categoryDiv) {
+        const itemsGrid = categoryDiv.querySelector('.menu-items-grid');
+        let showMoreButton = categoryDiv.querySelector('.show-more-button');
+        if (!itemsGrid || !showMoreButton) { if(showMoreButton) showMoreButton.style.display = 'none'; return; }
+        const allItems = Array.from(itemsGrid.querySelectorAll('.menu-item'));
+        const categoryName = categoryDiv.dataset.categoryName || 'الأصناف';
+        if (allItems.length > MAX_VISIBLE_ITEMS_DEFAULT) {
+            showMoreButton.style.display = 'block';
+            showMoreButton.textContent = `عرض المزيد من ${categoryName}`;
+            showMoreButton.classList.remove('expanded');
+            allItems.forEach((item, index) => {
+                if (index >= MAX_VISIBLE_ITEMS_DEFAULT) { item.style.display = 'none'; item.classList.add('extra-item'); }
+                else { item.style.display = 'flex'; item.classList.remove('extra-item'); }
+            });
+            const newButton = showMoreButton.cloneNode(true);
+            showMoreButton.parentNode.replaceChild(newButton, showMoreButton);
+            newButton.addEventListener('click', () => toggleExtraItems(categoryDiv, newButton));
+        } else {
+            showMoreButton.style.display = 'none';
+            allItems.forEach(item => { item.style.display = 'flex'; item.classList.remove('extra-item'); });
+        }
+    }
+    function initializeShowMoreForBranch(branchMenuDiv) {
+        const categories = branchMenuDiv.querySelectorAll('.menu-category:not(.featured-items)');
+        categories.forEach(categoryDiv => { initializeShowMoreForCategory(categoryDiv); });
+    }
+    
+    // --- Category Link Scrolling ---
+    function setupCategoryLinkScrolling() {
+        if (!categoryLinksListUl) return;
+        const links = categoryLinksListUl.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('#category-nav-container a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+                const targetElement = document.querySelector(this.hash);
+                if (targetElement) {
+                    const navHeight = categoryNavContainer ? categoryNavContainer.offsetHeight : 0;
+                    const offset = navHeight + 15; // Adjusted buffer
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+
+    // --- Scroll Spy for Category Navigation ---
+    function handleScrollSpy() {
+        if (!categoryNavContainer || !menuDisplayArea) return;
+        const navLinks = categoryLinksListUl.querySelectorAll('a');
+        const activeBranchMenu = menuDisplayArea.querySelector('.branch-menu.active-menu');
+        if (!activeBranchMenu) return;
+        
+        // Include featured section in scroll spy if it's visible
+        const sectionsToSpy = [
+            ...(featuredItemsSection && featuredItemsSection.style.display !== 'none' ? [featuredItemsSection] : []),
+            ...activeBranchMenu.querySelectorAll('.menu-category:not(.featured-items)')
+        ];
+
+        if (navLinks.length === 0 || sectionsToSpy.length === 0) return;
+
+        let currentSectionInView = "";
+        const navContainerHeight = categoryNavContainer.offsetHeight;
+        const scrollSpyOffset = navContainerHeight + 30; 
+
+        sectionsToSpy.forEach(section => {
+            const sectionRect = section.getBoundingClientRect();
+            if (sectionRect.top <= scrollSpyOffset && sectionRect.bottom >= scrollSpyOffset) {
+                currentSectionInView = section.getAttribute('id');
+            } else if (sectionRect.top <= scrollSpyOffset && sectionRect.top > 0 && !currentSectionInView) {
+                if (!currentSectionInView) currentSectionInView = section.getAttribute('id');
+            }
+        });
+        
+        if (!currentSectionInView && sectionsToSpy.length > 0) {
+            const firstSectionRect = sectionsToSpy[0].getBoundingClientRect();
+             if (!(firstSectionRect.top > scrollSpyOffset)) {
+                 currentSectionInView = sectionsToSpy[0].getAttribute('id');
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionInView}`) {
+                link.classList.add('active');
+                if (categoryNavContainer.scrollWidth > categoryNavContainer.clientWidth) {
+                    link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }
+        });
+    }
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+
+    // --- Back to Top Button ---
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 250) { 
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        }, { passive: true });
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // --- Scroll Animations for Menu Items ---
+    const itemObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, { threshold: 0.1 }); 
+
+    function observeMenuItems(parentElement) { // parentElement can be a branchMenuDiv or featuredItemsGrid
+        const itemsToAnimate = parentElement.querySelectorAll('.menu-item.animate-on-scroll');
+        itemsToAnimate.forEach(item => {
+            // Reset animation state if re-observing (e.g., after branch switch)
+            item.classList.remove('is-visible');
+            item.style.opacity = '0'; 
+            item.style.transform = 'translateY(30px)';
+            itemObserver.observe(item);
+        });
+    }
+
+    // --- Initial Setup & Event Listeners ---
+    if (branchSelect) {
+        // Set default selected branch from HTML <option selected>
+        const defaultBranch = branchSelect.value;
+        updateActiveMenu(defaultBranch, true); // true for isInitialLoad
+
+        branchSelect.addEventListener('change', function() {
+            updateActiveMenu(this.value);
+        });
+    } else { 
+        const firstBranchMenu = document.querySelector('.branch-menu');
+        if(firstBranchMenu){
+            const defaultBranchID = firstBranchMenu.id.replace('menu-', '');
+            if(branchSelect) branchSelect.value = defaultBranchID; 
+            updateActiveMenu(defaultBranchID, true);
+        }
+    }
+    
+    // Event delegation for "Add to Cart"
+    if (menuDisplayArea) {
+        menuDisplayArea.addEventListener('click', function(event) {
+            if (event.target.classList.contains('add-to-cart')) {
+                const menuItem = event.target.closest('.menu-item');
+                const itemName = menuItem ? menuItem.querySelector('.item-details h3')?.textContent : 'منتج';
+                alert(`تمت إضافة "${itemName}" للسلة (وظيفة تجريبية).`);
+            }
+        });
+    }
+    if (featuredItemsGrid) { // Also for featured items
+        featuredItemsGrid.addEventListener('click', function(event) {
+             if (event.target.classList.contains('add-to-cart')) {
+                const menuItem = event.target.closest('.menu-item');
+                const itemName = menuItem ? menuItem.querySelector('.item-details h3')?.textContent : 'منتج';
+                alert(`تمت إضافة "${itemName}" من الأطباق المميزة للسلة (وظيفة تجريبية).`);
+            }
+        });
+    }
 
 
-/* Footer (as before) */
-.site-footer { text-align: center; padding: 25px 15px; background-color: var(--bg-header-dark); color: var(--text-secondary-dark); margin-top: 30px; border-top: 1px solid var(--border-dark); }
-body.light-mode .site-footer { background-color: var(--bg-header-light); color: var(--text-secondary-light); border-top-color: var(--border-light); }
-.site-footer p { margin: 6px 0; font-size: 0.85rem; }
-.footer-hotline { color: var(--accent-secondary-dark) !important; font-weight: bold; }
-body.light-mode .footer-hotline { color: var(--accent-secondary-light) !important; }
-
-/* Focus states (as before) */
-button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--accent-secondary-dark); outline-offset: 2px; }
-body.light-mode button:focus-visible, body.light-mode select:focus-visible, body.light-mode a:focus-visible { outline-color: var(--accent-secondary-light); }
-
-/* Responsive Adjustments (as before, check values for new sticky nav setup) */
-@media (max-width: 768px) {
-    html { scroll-padding-top: 50px; } /* Height of sticky category nav */
-    #category-nav-container { top: 0; }
-    .menu-category { padding-top: 60px; margin-top: -60px; }
-}
-@media (max-width: 520px) {
-    html { scroll-padding-top: 45px; }
-    .top-bar { flex-direction: column; gap: 10px; }
-    .logo-area { order: -1; width: 100%; text-align: center; }
-    .header-controls { width: 100%; justify-content: space-evenly; flex-wrap: wrap; gap: 8px;}
-    #branch-select, .hotline-link-compact, #theme-toggle { font-size: 0.8rem; padding: 6px 10px; }
-    .tagline { display: none; }
-    #category-nav-container { top: 0; }
-    .menu-items-grid { grid-template-columns: 1fr; }
-    .menu-category h2 { font-size: 1.3rem; }
-}
-
+    const currentYearSpan = document.getElementById('currentYear');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+    
+    handleScrollSpy(); // Initial call
+});
