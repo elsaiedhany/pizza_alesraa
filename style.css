@@ -201,5 +201,4 @@ body.light-mode button:focus-visible, body.light-mode select:focus-visible, body
     #category-nav-container { top: 0; }
     .menu-items-grid { grid-template-columns: 1fr; }
     .menu-category h2 { font-size: 1.3rem; }
-}
-
+} 
