@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body class="dark-mode">
-    <header class="site-header">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    </head>
+<body class="dark-mode"> <header class="site-header">
         <div class="top-bar container">
             <div class="logo-area">
                 <h1>بيتزا الإسراء</h1>
@@ -19,8 +18,7 @@
                 <div class="branch-selector-compact">
                     <label for="branch-select" class="sr-only"></label> 
                     <select id="branch-select" aria-label="اختيار الفرع">
-                        <option value="tanta" selected>طنطا</option>
-                        <option value="senbellawein">السنبلاوين</option>
+                        <option value="senbellawein">السنبلاوين</option> <option value="tanta">طنطا</option>
                         <option value="mitghamr">ميت غمر</option>
                     </select>
                 </div>
@@ -42,58 +40,84 @@
                 </ul>
         </nav>
 
+        <section id="featured-items-section" class="menu-category featured-items">
+            <h2>أطباق الإسراء الذهبية</h2>
+            <p class="category-description">تشكيلة من أطباقنا الأكثر طلباً والتي ننصح بتجربتها!</p>
+            <div id="featured-items-grid" class="menu-items-grid featured-grid">
+                </div>
+        </section>
+
         <div id="menu-display-area" class="menu-content-area">
-            <div id="menu-tanta" class="branch-menu active-menu">
-                <section id="tanta-pizzas" class="menu-category" data-category-name="البيتزا">
-                    <h2>البيتزا</h2>
+            
+            <div id="menu-senbellawein" class="branch-menu"> <section id="senbellawein-mix" class="menu-category" data-category-name="الميكسات">
+                    <h2>الميكسات</h2>
                     <div class="menu-items-grid">
-                        <div class="menu-item"><div class="item-image-placeholder"><span>صورة مكس تشيكن</span></div><div class="item-content"><div class="item-details"><h3>مكس تشيكن</h3><p class="description">دجاج متبل، فلفل، زيتون، صوص رانش، موتزاريلا.</p></div><div class="item-actions"><div class="sizes-prices"><span>S: <span class="price">90 ج.م</span></span> <span>M: <span class="price">115 ج.م</span></span> <span>L: <span class="price">145 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                        <div class="menu-item"><div class="item-image-placeholder"><span>صورة مكس لحوم</span></div><div class="item-content"><div class="item-details"><h3>مكس لحوم</h3><p class="description">لحم مفروم، سجق، بسطرمة، خضروات، موتزاريلا.</p></div><div class="item-actions"><div class="sizes-prices"><span>S: <span class="price">95 ج.م</span></span> <span>M: <span class="price">120 ج.م</span></span> <span>L: <span class="price">150 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                        <div class="menu-item"><div class="item-image-placeholder"><span>صورة سوبريم</span></div><div class="item-content"><div class="item-details"><h3>سوبريم</h3><p class="description">بيبروني، لحم، فلفل، بصل، زيتون، مشروم.</p></div><div class="item-actions"><div class="sizes-prices"><span>S: <span class="price">90 ج.م</span></span> <span>M: <span class="price">110 ج.م</span></span> <span>L: <span class="price">140 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                        <div class="menu-item extra-item"><div class="item-image-placeholder"><span>صورة مارجريتا</span></div><div class="item-content"><div class="item-details"><h3>مارجريتا</h3><p class="description">البيتزا الكلاسيكية بصوص الطماطم الغني وجبنة الموتزاريلا الطازجة والريحان.</p></div><div class="item-actions"><div class="sizes-prices"><span>S: <span class="price">70 ج.م</span></span> <span>M: <span class="price">90 ج.م</span></span> <span>L: <span class="price">110 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                        <div class="menu-item extra-item"><div class="item-image-placeholder"><span>صورة بيبروني</span></div><div class="item-content"><div class="item-details"><h3>بيبروني</h3><p class="description">شرائح البيبروني مع جبنة الموتزاريلا الغنية.</p></div><div class="item-actions"><div class="sizes-prices"><span>S: <span class="price">85 ج.م</span></span> <span>M: <span class="price">105 ج.م</span></span> <span>L: <span class="price">135 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                    </div>
-                    <button class="show-more-button">عرض المزيد من البيتزا</button>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>مكس دجاج</span></div><div class="item-content"><div class="item-details"><h3>مكس دجاج</h3><p class="description">صوص، خضار، موتزاريلا، قطع دجاج، استربس، شيش طاووق.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>مكس لحوم</span></div><div class="item-content"><div class="item-details"><h3>مكس لحوم</h3><p class="description">صوص، خضار، موتزاريلا، قطع لحم، سجق، بسطرمة.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>سوبريم دجاج</span></div><div class="item-content"><div class="item-details"><h3>سوبريم دجاج</h3><p class="description">صوص، خضار، موتزاريلا، فلفل، زيتون، قطع دجاج، مشروم.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>سوبريم</span></div><div class="item-content"><div class="item-details"><h3>سوبريم</h3><p class="description">صوص، خضار، موتزاريلا، بيبروني، سلامي، هوت دوج.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>فاهيتا دجاج</span></div><div class="item-content"><div class="item-details"><h3>فاهيتا دجاج</h3><p class="description">صوص، فاهيتا، قطع دجاج، فلفل الوان، مشروم.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll extra-item"><div class="item-image-placeholder"><span>كرانشي</span></div><div class="item-content"><div class="item-details"><h3>كرانشي (حار - بارد)</h3><p class="description">صوص، خضار، موتزاريلا، قطع دجاج كرسبي، شرائح هوت دوج.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        </div>
+                    <button class="show-more-button">عرض المزيد من الميكسات</button>
                 </section>
 
-                <section id="tanta-pastas" class="menu-category" data-category-name="المكرونات">
-                    <h2>المكرونات</h2>
+                <section id="senbellawein-meat" class="menu-category" data-category-name="اللحوم">
+                    <h2>اللحوم</h2>
                     <div class="menu-items-grid">
-                         <div class="menu-item"><div class="item-image-placeholder"><span>صورة نجرسكو</span></div><div class="item-content"><div class="item-details"><h3>نجرسكو</h3><p class="description">دجاج، مشروم، صوص أبيض كريمي، وموتزاريلا.</p></div><div class="item-actions"><div class="sizes-prices"><span>طبق: <span class="price">100 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                         <div class="menu-item"><div class="item-image-placeholder"><span>صورة ألفريدو</span></div><div class="item-content"><div class="item-details"><h3>ألفريدو دجاج</h3><p class="description">فيتوتشيني بصوص ألفريدو مع قطع الدجاج الشهية.</p></div><div class="item-actions"><div class="sizes-prices"><span>طبق: <span class="price">110 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                    </div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>هوت دوج</span></div><div class="item-content"><div class="item-details"><h3>هوت دوج</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">110</span></span><span>M:<span class="price">140</span></span><span>L:<span class="price">160</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        </div>
                 </section>
                 
-                <section id="tanta-crepes" class="menu-category" data-category-name="الكريبات">
-                    <h2>الكريبات</h2>
+                <section id="senbellawein-cheese" class="menu-category" data-category-name="الجبن">
+                    <h2>الجبن</h2>
                     <div class="menu-items-grid">
-                        <div class="menu-item"><div class="item-image-placeholder"><span>صورة كريب دجاج</span></div><div class="item-content"><div class="item-details"><h3>كريب دجاج كرسبي</h3><p class="description">قطع دجاج كرسبي مع صوص الإسراء الخاص في كريب مقرمش.</p></div><div class="item-actions"><div class="sizes-prices"><span>كريب: <span class="price">80 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                        <div class="menu-item extra-item"><div class="item-image-placeholder"><span>صورة كريب نوتيلا</span></div><div class="item-content"><div class="item-details"><h3>كريب نوتيلا وموز</h3><p class="description">كريب حلو غرقان نوتيلا مع قطع الموز والفراولة.</p></div><div class="item-actions"><div class="sizes-prices"><span>كريب: <span class="price">70 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                    </div>
-                    <button class="show-more-button">عرض المزيد من الكريبات</button>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>مارجريتا</span></div><div class="item-content"><div class="item-details"><h3>مارجريتا</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">105</span></span><span>M:<span class="price">130</span></span><span>L:<span class="price">150</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        </div>
                 </section>
 
-                <section id="tanta-drinks" class="menu-category" data-category-name="المشروبات">
-                    <h2>المشروبات</h2>
-                     <div class="menu-items-grid">
-                        <div class="menu-item"><div class="item-image-placeholder"><span>صورة بيبسي</span></div><div class="item-content"><div class="item-details"><h3>بيبسي</h3><p class="description">مشروب غازي منعش.</p></div><div class="item-actions"><div class="sizes-prices"><span>علبة: <span class="price">15 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                        <div class="menu-item"><div class="item-image-placeholder"><span>صورة مياه</span></div><div class="item-content"><div class="item-details"><h3>مياه معدنية</h3><p class="description">مياه نقية.</p></div><div class="item-actions"><div class="sizes-prices"><span>زجاجة: <span class="price">10 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                    </div>
-                </section>
-                 </div>
-
-            <div id="menu-senbellawein" class="branch-menu">
-                <section id="senbellawein-pizzas" class="menu-category" data-category-name="البيتزا">
-                    <h2>بيتزا (فرع السنبلاوين)</h2>
-                    <p class="category-description">عروض خاصة وأصناف مميزة لفرع السنبلاوين!</p>
+                <section id="senbellawein-chicken" class="menu-category" data-category-name="الفراخ">
+                    <h2>الفراخ</h2>
                     <div class="menu-items-grid">
-                        <div class="menu-item"><div class="item-image-placeholder"><span>بيتزا خضار عرض</span></div><div class="item-content"><div class="item-details"><h3>بيتزا خضروات (عرض خاص)</h3><p class="description">تشكيلة خضروات طازجة بسعر خاص لفرع السنبلاوين.</p></div><div class="item-actions"><div class="sizes-prices"><span>L: <span class="price">95 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                         </div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>دجاج</span></div><div class="item-content"><div class="item-details"><h3>دجاج</h3></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">120</span></span><span>M:<span class="price">150</span></span><span>L:<span class="price">170</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        </div>
+                </section>               
+
+                <section id="senbellawein-seafood" class="menu-category" data-category-name="البحريات">
+                    <h2>البحريات</h2>
+                    <div class="menu-items-grid">
+                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>تونا</span></div><div class="item-content"><div class="item-details"><h3>تونا</h3><p class="description">صوص، تونا، فلفل، زيتون.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">125</span></span><span>M:<span class="price">155</span></span><span>L:<span class="price">175</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        </div>
                 </section>
-                <section id="senbellawein-drinks" class="menu-category" data-category-name="المشروبات">
-                    <h2>مشروبات (السنبلاوين)</h2>
-                     <div class="menu-items-grid">
-                         <div class="menu-item"><div class="item-image-placeholder"><span>صورة عصير برتقال</span></div><div class="item-content"><div class="item-details"><h3>عصير برتقال فريش</h3><p class="description">حصري لفرع السنبلاوين.</p></div><div class="item-actions"><div class="sizes-prices"><span>كوب: <span class="price">25 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
+
+                <section id="senbellawein-pizza-extras" class="menu-category" data-category-name="إضافات البيتزا">
+                    <h2>إضافات للبيتزا</h2>
+                    <div class="menu-items-grid">
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>موتزاريلا</span></div><div class="item-content"><div class="item-details"><h3>موتزاريلا</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">20</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        </div>
+                </section>
+
+                <section id="senbellawein-side-items" class="menu-category" data-category-name="إضافات جانبية">
+                    <h2>إضافات جانبية</h2>
+                    <div class="menu-items-grid">
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>كلو سلو</span></div><div class="item-content"><div class="item-details"><h3>كلو سلو</h3></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">30</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        </div>
+                </section>
+            </div>
+
+            <div id="menu-tanta" class="branch-menu">
+                <section id="tanta-mix" class="menu-category" data-category-name="الميكسات">
+                    <h2>الميكسات (طنطا)</h2>
+                    <div class="menu-items-grid">
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>مكس تشيكن</span></div><div class="item-content"><div class="item-details"><h3>مكس تشيكن</h3><p class="description">فراخ، شيش، بانيه، موتزاريلا، خضروات.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">85</span></span><span>M:<span class="price">105</span></span><span>L:<span class="price">135</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>مكس لحوم</span></div><div class="item-content"><div class="item-details"><h3>مكس لحوم</h3><p class="description">مفروم، سجق، بسطرمة، موتزاريلا، خضروات.</p></div><div class="item-actions"><div class="sizes-prices"><span>S:<span class="price">85</span></span><span>M:<span class="price">110</span></span><span>L:<span class="price">145</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
+                        </div>
+                     <button class="show-more-button">عرض المزيد</button>
+                </section>
+                 <section id="tanta-shawerma" class="menu-category" data-category-name="الشاورما">
+                    <h2>الشاورما (طنطا)</h2>
+                    <div class="menu-items-grid">
+                        <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>ساندوتش خيار</span></div><div class="item-content"><div class="item-details"><h3>ساندوتش خيار</h3><p class="description">ساندوتش سوبر، فتة شاورما.</p></div><div class="item-actions"><div class="sizes-prices"><span><span class="price">30</span></span></div><button class="add-to-cart">اطلب</button></div></div></div>
                          </div>
                 </section>
                 </div>
@@ -102,10 +126,10 @@
                 <section id="mitghamr-main" class="menu-category" data-category-name="أطباق ميت غمر">
                     <h2>أطباق خاصة بفرع ميت غمر</h2>
                     <div class="menu-items-grid">
-                         <div class="menu-item"><div class="item-image-placeholder"><span>شاورما مخصوص</span></div><div class="item-content"><div class="item-details"><h3>شاورما الإسراء مخصوص</h3><p class="description">شاورما لحم أو دجاج بخلطتنا السرية - فقط في ميت غمر.</p></div><div class="item-actions"><div class="sizes-prices"><span>ساندوتش: <span class="price">75 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
-                          </div>
+                         <div class="menu-item animate-on-scroll"><div class="item-image-placeholder"><span>شاورما مخصوص</span></div><div class="item-content"><div class="item-details"><h3>شاورما الإسراء مخصوص</h3><p class="description">شاورما لحم أو دجاج بخلطتنا السرية - فقط في ميت غمر.</p></div><div class="item-actions"><div class="sizes-prices"><span>ساندوتش: <span class="price">75 ج.م</span></span></div><button class="add-to-cart">اطلب الآن</button></div></div></div>
+                    </div>
                 </section>
-                </div>
+            </div>
         </div>
     </main>
 
@@ -116,6 +140,8 @@
             <p>للطلبات: <a href="tel:15410" class="footer-hotline">15410</a></p>
         </div>
     </footer>
+
+    <button id="back-to-top" class="back-to-top-button" title="العودة للأعلى" aria-label="العودة للأعلى">↑</button>
 
     <script src="script.js" defer></script>
 </body>
