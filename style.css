@@ -41,8 +41,7 @@ body.light-mode .site-header { background-color: var(--bg-header-light); border-
 .logo-area h1 { font-size: clamp(1.6rem, 4vw, 2rem); margin: 0; color: var(--accent-primary-dark); font-weight: 900; }
 body.light-mode .logo-area h1 { color: var(--accent-primary-light); }
 .header-controls { display: flex; align-items: center; gap: 10px; }
-.branch-selector-compact { display: none; /* تم الإلغاء بناءً على الطلب الأخير */ }
-#branch-select { display: none; /* تم الإلغاء */ }
+/* .branch-selector-compact and #branch-select are removed from HTML so styles are not needed */
 .hotline-link-compact { color: var(--text-primary-dark); font-size: 0.9rem; font-weight: 600; padding: 7px 12px; border-radius: var(--border-radius); background-color: var(--bg-content-dark); border: 1px solid var(--border-dark); display: flex; align-items: center; gap: 5px; }
 body.light-mode .hotline-link-compact { color: var(--text-primary-light); background-color: var(--bg-content-light); border-color: var(--border-light); }
 .hotline-link-compact .icon-phone { font-size: 1em; color: var(--accent-primary-dark); }
@@ -70,7 +69,7 @@ body.light-mode #category-nav-container a.active { background-color: var(--accen
 
 /* Menu Area */
 .menu-content-area { padding-top: 10px; }
-.branch-menu { display: none; /* JS will make one active */ }
+.branch-menu { display: none; } /* JavaScript will set .active-menu */
 .branch-menu.active-menu { display: block; animation: fadeIn 0.5s ease-out; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -79,7 +78,6 @@ body.light-mode #category-nav-container a.active { background-color: var(--accen
 body.light-mode .featured-items { background-color: var(--bg-content-light); border-color: var(--border-light); }
 .featured-items h2 { font-size: clamp(1.5rem, 3.5vw, 1.8rem); color: var(--accent-secondary-dark); text-align: center; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 2px solid var(--accent-primary-dark); display: inline-block; }
 body.light-mode .featured-items h2 { color: var(--accent-secondary-light); border-bottom-color: var(--accent-primary-light); }
-/* .featured-items .category-description { font-size: 0.95rem; text-align: center; margin-bottom: 20px; } */
 .featured-grid .menu-item { box-shadow: 0 4px 10px var(--shadow-base-dark); }
 body.light-mode .featured-grid .menu-item { box-shadow: 0 4px 10px var(--shadow-base-light); }
 .featured-item .item-details h3 { color: var(--accent-secondary-dark) !important; }
@@ -169,7 +167,6 @@ body.light-mode .branch-addresses { color: var(--text-primary-light); }
 body.light-mode .branch-addresses strong { color: var(--text-heading-light); }
 .footer-divider { border: none; height: 1px; background-color: var(--border-dark); margin: 15px auto; width: 80%;}
 body.light-mode .footer-divider { background-color: var(--border-light); }
-
 
 /* Focus states */
 button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--accent-secondary-dark); outline-offset: 2px; }
