@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const branchSelect = document.getElementById('branch-select');
     const categoryNavContainer = document.getElementById('category-nav-container');
     const categoryLinksListUl = document.getElementById('category-links-list');
+    
     const menuDisplayArea = document.getElementById('menu-display-area');
     const backToTopButton = document.getElementById('back-to-top');
     const featuredItemsGrid = document.getElementById('featured-items-grid');
     const featuredItemsSection = document.getElementById('featured-items-section');
 
-
-    const MAX_VISIBLE_ITEMS_DEFAULT = 3;
+    const MAX_VISIBLE_ITEMS_DEFAULT = 3; 
 
     // --- Theme Toggle ---
     function applyTheme(theme) {
@@ -37,14 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Branch Specific Menu & Category Navigation ---
     function updateCategoryNavigation(branchValue) {
         if (!categoryLinksListUl) return;
-        categoryLinksListUl.innerHTML = '';
+        categoryLinksListUl.innerHTML = ''; 
+
         const activeMenuDiv = document.getElementById(`menu-${branchValue}`);
         if (!activeMenuDiv) return;
 
         // Add link for Featured Items first if it exists and is visible
-        if (featuredItemsSection && featuredItemsSection.style.display !== 'none') {
+        if (featuredItemsSection && featuredItemsSection.style.display !== 'none' && featuredItemsGrid && featuredItemsGrid.children.length > 0) {
             const featuredCatId = featuredItemsSection.id;
-            const featuredCatName = featuredItemsSection.querySelector('h2')?.textContent.trim() || "أطباق مميزة";
+            // Use the h2 text content for the link name
+            const featuredCatNameElement = featuredItemsSection.querySelector('h2');
+            const featuredCatName = featuredCatNameElement ? featuredCatNameElement.textContent.trim() : "أطباق مميزة";
+            
             if (featuredCatId && featuredCatName) {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
@@ -59,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         categories.forEach(category => {
             const categoryId = category.id;
             const categoryName = category.dataset.categoryName || category.querySelector('h2')?.textContent.trim();
+            
             if (categoryId && categoryName) {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
@@ -69,22 +74,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         setupCategoryLinkScrolling();
-        handleScrollSpy();
+        handleScrollSpy(); // Call after links are generated
     }
-
+    
     function updateActiveMenu(selectedBranchValue, isInitialLoad = false) {
         document.querySelectorAll('.branch-menu').forEach(menu => menu.classList.remove('active-menu'));
         const activeMenuDiv = document.getElementById(`menu-${selectedBranchValue}`);
         if (activeMenuDiv) {
             activeMenuDiv.classList.add('active-menu');
+            populateFeaturedItems(selectedBranchValue); // Populate featured based on active branch
+            updateCategoryNavigation(selectedBranchValue); // THEN update nav, which might include featured section
             initializeShowMoreForBranch(activeMenuDiv);
-            observeMenuItems(activeMenuDiv);
-            populateFeaturedItems(selectedBranchValue); // Populate featured AFTER menu is active
-            updateCategoryNavigation(selectedBranchValue); // Update nav AFTER featured might be populated/shown
+            observeMenuItems(activeMenuDiv); 
             
             if (!isInitialLoad && categoryNavContainer) {
                  const navContainerTop = categoryNavContainer.getBoundingClientRect().top + window.pageYOffset;
-                 window.scrollTo({ top: navContainerTop - 10, behavior: 'smooth'}); // Scroll to top of nav
+                 window.scrollTo({ top: navContainerTop - 10, behavior: 'smooth'});
             }
         }
     }
@@ -100,24 +105,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // Example: Pick first 2-3 items from the active branch's first *actual* menu category
-        const firstRealCategory = activeMenuDiv.querySelector('.menu-category:not(.featured-items)');
-        if (!firstRealCategory) {
-            featuredItemsSection.style.display = 'none';
-            return;
-        }
+        const itemsToConsiderForFeatured = [];
+        // Collect items from all categories of the active branch
+        activeMenuDiv.querySelectorAll('.menu-category:not(.featured-items) .menu-item').forEach(item => {
+            itemsToConsiderForFeatured.push(item);
+        });
 
-        const itemsToFeature = Array.from(firstRealCategory.querySelectorAll('.menu-item'));
         let count = 0;
-        
-        // Simple logic: take first 3, or fewer if not available
-        for (let i = 0; i < itemsToFeature.length && count < 3; i++) {
-            const clonedItem = itemsToFeature[i].cloneNode(true);
+        // Simple logic: take first 3 unique items, or fewer if not available
+        // To make it more interesting, you could randomize or pick based on some criteria
+        for (let i = 0; i < itemsToConsiderForFeatured.length && count < 3; i++) {
+            const clonedItem = itemsToConsiderForFeatured[i].cloneNode(true);
             clonedItem.classList.add('featured-item'); 
             clonedItem.classList.remove('animate-on-scroll', 'extra-item'); 
             clonedItem.style.opacity = 1; 
             clonedItem.style.transform = 'translateY(0)';
-            // Remove show more button if it gets cloned from a category item
             const clonedShowMore = clonedItem.querySelector('.show-more-button');
             if(clonedShowMore) clonedShowMore.remove();
             
@@ -128,8 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (count === 0) {
              featuredItemsSection.style.display = 'none';
         } else {
-            featuredItemsSection.style.display = 'block';
-            observeMenuItems(featuredItemsGrid); // Animate featured items too
+            featuredItemsSection.style.display = 'block'; // Or 'flex' if it's a flex container
+            observeMenuItems(featuredItemsGrid); 
         }
     }
 
@@ -143,11 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const allItems = Array.from(itemsGrid.querySelectorAll('.menu-item'));
         allItems.forEach((item, index) => {
             if (index >= MAX_VISIBLE_ITEMS_DEFAULT) {
-                item.style.display = isExpanded ? 'flex' : 'none';
+                item.style.display = isExpanded ? 'flex' : 'none'; 
                 item.classList.toggle('extra-item', !isExpanded);
-                // If expanded, make sure it's observed for animation
                 if (isExpanded && item.classList.contains('animate-on-scroll')) {
-                    item.classList.remove('is-visible'); // Reset animation state
+                    item.classList.remove('is-visible'); 
                     itemObserver.observe(item);
                 }
             }
@@ -192,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetElement = document.querySelector(this.hash);
                 if (targetElement) {
                     const navHeight = categoryNavContainer ? categoryNavContainer.offsetHeight : 0;
-                    const offset = navHeight + 15; // Adjusted buffer
+                    const offset = navHeight + 15; // Adjusted buffer for better positioning
                     const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
@@ -202,39 +203,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Scroll Spy for Category Navigation ---
     function handleScrollSpy() {
-        if (!categoryNavContainer || !menuDisplayArea) return;
+        if (!categoryNavContainer || !menuDisplayArea || !categoryLinksListUl) return;
+        
         const navLinks = categoryLinksListUl.querySelectorAll('a');
         const activeBranchMenu = menuDisplayArea.querySelector('.branch-menu.active-menu');
-        if (!activeBranchMenu) return;
+        if (!activeBranchMenu || navLinks.length === 0) return;
         
-        // Include featured section in scroll spy if it's visible
-        const sectionsToSpy = [
-            ...(featuredItemsSection && featuredItemsSection.style.display !== 'none' ? [featuredItemsSection] : []),
-            ...activeBranchMenu.querySelectorAll('.menu-category:not(.featured-items)')
-        ];
+        const sectionsToSpy = [];
+        if (featuredItemsSection && featuredItemsSection.style.display !== 'none' && featuredItemsGrid.children.length > 0) {
+            sectionsToSpy.push(featuredItemsSection);
+        }
+        sectionsToSpy.push(...activeBranchMenu.querySelectorAll('.menu-category:not(.featured-items)'));
 
-        if (navLinks.length === 0 || sectionsToSpy.length === 0) return;
+        if (sectionsToSpy.length === 0) return;
 
         let currentSectionInView = "";
         const navContainerHeight = categoryNavContainer.offsetHeight;
         const scrollSpyOffset = navContainerHeight + 30; 
 
-        sectionsToSpy.forEach(section => {
+        for (let i = sectionsToSpy.length - 1; i >= 0; i--) {
+            const section = sectionsToSpy[i];
             const sectionRect = section.getBoundingClientRect();
-            if (sectionRect.top <= scrollSpyOffset && sectionRect.bottom >= scrollSpyOffset) {
+            if (sectionRect.top <= scrollSpyOffset) {
                 currentSectionInView = section.getAttribute('id');
-            } else if (sectionRect.top <= scrollSpyOffset && sectionRect.top > 0 && !currentSectionInView) {
-                if (!currentSectionInView) currentSectionInView = section.getAttribute('id');
-            }
-        });
-        
-        if (!currentSectionInView && sectionsToSpy.length > 0) {
-            const firstSectionRect = sectionsToSpy[0].getBoundingClientRect();
-             if (!(firstSectionRect.top > scrollSpyOffset)) {
-                 currentSectionInView = sectionsToSpy[0].getAttribute('id');
+                break; 
             }
         }
-
+        
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${currentSectionInView}`) {
@@ -250,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Back to Top Button ---
     if (backToTopButton) {
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 250) { 
+            if (window.pageYOffset > 280) { 
                 backToTopButton.classList.add('show');
             } else {
                 backToTopButton.classList.remove('show');
@@ -272,11 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 }); 
 
-    function observeMenuItems(parentElement) { // parentElement can be a branchMenuDiv or featuredItemsGrid
+    function observeMenuItems(parentElement) { 
         const itemsToAnimate = parentElement.querySelectorAll('.menu-item.animate-on-scroll');
         itemsToAnimate.forEach(item => {
-            // Reset animation state if re-observing (e.g., after branch switch)
-            item.classList.remove('is-visible');
+            item.classList.remove('is-visible'); // Reset for re-observation
             item.style.opacity = '0'; 
             item.style.transform = 'translateY(30px)';
             itemObserver.observe(item);
@@ -285,9 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Setup & Event Listeners ---
     if (branchSelect) {
-        // Set default selected branch from HTML <option selected>
-        const defaultBranch = branchSelect.value;
-        updateActiveMenu(defaultBranch, true); // true for isInitialLoad
+        const defaultBranch = branchSelect.value; // Will be 'senbellawein' due to 'selected' in HTML
+        updateActiveMenu(defaultBranch, true); 
 
         branchSelect.addEventListener('change', function() {
             updateActiveMenu(this.value);
@@ -302,25 +295,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Event delegation for "Add to Cart"
+    function handleAddToCartClick(event) {
+        if (event.target.classList.contains('add-to-cart')) {
+            const menuItem = event.target.closest('.menu-item');
+            const itemName = menuItem ? menuItem.querySelector('.item-details h3')?.textContent : 'منتج';
+            alert(`تمت إضافة "${itemName}" للسلة (وظيفة تجريبية).`);
+        }
+    }
     if (menuDisplayArea) {
-        menuDisplayArea.addEventListener('click', function(event) {
-            if (event.target.classList.contains('add-to-cart')) {
-                const menuItem = event.target.closest('.menu-item');
-                const itemName = menuItem ? menuItem.querySelector('.item-details h3')?.textContent : 'منتج';
-                alert(`تمت إضافة "${itemName}" للسلة (وظيفة تجريبية).`);
-            }
-        });
+        menuDisplayArea.addEventListener('click', handleAddToCartClick);
     }
-    if (featuredItemsGrid) { // Also for featured items
-        featuredItemsGrid.addEventListener('click', function(event) {
-             if (event.target.classList.contains('add-to-cart')) {
-                const menuItem = event.target.closest('.menu-item');
-                const itemName = menuItem ? menuItem.querySelector('.item-details h3')?.textContent : 'منتج';
-                alert(`تمت إضافة "${itemName}" من الأطباق المميزة للسلة (وظيفة تجريبية).`);
-            }
-        });
+    if (featuredItemsGrid) { 
+        featuredItemsGrid.addEventListener('click', handleAddToCartClick);
     }
-
 
     const currentYearSpan = document.getElementById('currentYear');
     if (currentYearSpan) {
